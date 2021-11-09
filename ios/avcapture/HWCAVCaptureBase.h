@@ -8,13 +8,22 @@
 #import <Foundation/Foundation.h>
 #import "Define.h"
 
+
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HWCAVCapture : NSObject
 
--(void)startCapture:(CaptureType)type;
+
+@interface HWCAVCaptureBase : NSObject
+
+
+-(void)createPipe;
+
+-(void)startCapture:(CaptureType)captureType;
 
 -(void)stopCapture;
+
+-(void)releasePipe;
+
 @end
 
 NS_ASSUME_NONNULL_END

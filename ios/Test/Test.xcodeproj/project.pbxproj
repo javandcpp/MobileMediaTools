@@ -18,7 +18,21 @@
 		DFDFB450273A214A001CCBE3 /* TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB44F273A214A001CCBE3 /* TestTests.m */; };
 		DFDFB45A273A214B001CCBE3 /* TestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB459273A214B001CCBE3 /* TestUITests.m */; };
 		DFDFB45C273A214B001CCBE3 /* TestUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB45B273A214B001CCBE3 /* TestUITestsLaunchTests.m */; };
-		DFDFB46A273A21EC001CCBE3 /* HWCAVCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB469273A21EC001CCBE3 /* HWCAVCapture.m */; };
+		DFDFB46A273A21EC001CCBE3 /* HWCAVCaptureBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB469273A21EC001CCBE3 /* HWCAVCaptureBase.mm */; };
+		DFDFB46D273A29D7001CCBE3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFDFB46C273A29D7001CCBE3 /* AVFoundation.framework */; };
+		DFDFB46F273A29E7001CCBE3 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFDFB46E273A29E7001CCBE3 /* VideoToolbox.framework */; };
+		DFDFB471273A29EB001CCBE3 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DFDFB470273A29EB001CCBE3 /* AudioToolbox.framework */; };
+		DFDFB474273A2A45001CCBE3 /* HWCVideoCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB473273A2A45001CCBE3 /* HWCVideoCapture.m */; };
+		DFDFB477273A2A57001CCBE3 /* HWCAudioCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB476273A2A57001CCBE3 /* HWCAudioCapture.m */; };
+		DFDFB47A273A2EE3001CCBE3 /* HWCAVCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB479273A2EE3001CCBE3 /* HWCAVCapture.m */; };
+		DFDFB481273A4845001CCBE3 /* HWCPipeParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB47F273A4845001CCBE3 /* HWCPipeParser.cpp */; };
+		DFDFB48B273A4D36001CCBE3 /* HWCPipe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB489273A4D36001CCBE3 /* HWCPipe.cpp */; };
+		DFDFB48E273A4F03001CCBE3 /* HWCPipeInfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB48C273A4F03001CCBE3 /* HWCPipeInfo.cpp */; };
+		DFDFB491273A506F001CCBE3 /* HWCAudioStreamNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB48F273A506F001CCBE3 /* HWCAudioStreamNode.cpp */; };
+		DFDFB497273A5202001CCBE3 /* HWCMp4MuxerNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB495273A5202001CCBE3 /* HWCMp4MuxerNode.cpp */; };
+		DFDFB49A273A5412001CCBE3 /* HWCMP3EncoderNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB498273A5412001CCBE3 /* HWCMP3EncoderNode.cpp */; };
+		DFDFB49E273A64A5001CCBE3 /* HWCPipeNodeRegister.hpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB49C273A620E001CCBE3 /* HWCPipeNodeRegister.hpp */; };
+		DFDFB4A0273A6515001CCBE3 /* HWCPipeNodeRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB49F273A6515001CCBE3 /* HWCPipeNodeRegister.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,8 +71,36 @@
 		DFDFB455273A214B001CCBE3 /* TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFDFB459273A214B001CCBE3 /* TestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUITests.m; sourceTree = "<group>"; };
 		DFDFB45B273A214B001CCBE3 /* TestUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUITestsLaunchTests.m; sourceTree = "<group>"; };
-		DFDFB468273A21EC001CCBE3 /* HWCAVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HWCAVCapture.h; path = ../../avcapture/HWCAVCapture.h; sourceTree = "<group>"; };
-		DFDFB469273A21EC001CCBE3 /* HWCAVCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HWCAVCapture.m; path = ../../avcapture/HWCAVCapture.m; sourceTree = "<group>"; };
+		DFDFB468273A21EC001CCBE3 /* HWCAVCaptureBase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HWCAVCaptureBase.h; path = ../../avcapture/HWCAVCaptureBase.h; sourceTree = "<group>"; };
+		DFDFB469273A21EC001CCBE3 /* HWCAVCaptureBase.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = HWCAVCaptureBase.mm; path = ../../avcapture/HWCAVCaptureBase.mm; sourceTree = "<group>"; };
+		DFDFB46C273A29D7001CCBE3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		DFDFB46E273A29E7001CCBE3 /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		DFDFB470273A29EB001CCBE3 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		DFDFB472273A2A45001CCBE3 /* HWCVideoCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HWCVideoCapture.h; path = ../../avcapture/HWCVideoCapture.h; sourceTree = "<group>"; };
+		DFDFB473273A2A45001CCBE3 /* HWCVideoCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HWCVideoCapture.m; path = ../../avcapture/HWCVideoCapture.m; sourceTree = "<group>"; };
+		DFDFB475273A2A57001CCBE3 /* HWCAudioCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HWCAudioCapture.h; path = ../../avcapture/HWCAudioCapture.h; sourceTree = "<group>"; };
+		DFDFB476273A2A57001CCBE3 /* HWCAudioCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HWCAudioCapture.m; path = ../../avcapture/HWCAudioCapture.m; sourceTree = "<group>"; };
+		DFDFB478273A2EE3001CCBE3 /* HWCAVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HWCAVCapture.h; path = ../../avcapture/HWCAVCapture.h; sourceTree = "<group>"; };
+		DFDFB479273A2EE3001CCBE3 /* HWCAVCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HWCAVCapture.m; path = ../../avcapture/HWCAVCapture.m; sourceTree = "<group>"; };
+		DFDFB47B273A2F7C001CCBE3 /* Define.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Define.h; path = ../../avcapture/Define.h; sourceTree = "<group>"; };
+		DFDFB47E273A3013001CCBE3 /* config.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = config.json; sourceTree = "<group>"; };
+		DFDFB47F273A4845001CCBE3 /* HWCPipeParser.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCPipeParser.cpp; path = ../../../common/pipe/HWCPipeParser.cpp; sourceTree = "<group>"; };
+		DFDFB480273A4845001CCBE3 /* HWCPipeParser.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCPipeParser.hpp; path = ../../../common/pipe/HWCPipeParser.hpp; sourceTree = "<group>"; };
+		DFDFB486273A4956001CCBE3 /* HWCAVStruct.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCAVStruct.hpp; path = ../../../common/base/HWCAVStruct.hpp; sourceTree = "<group>"; };
+		DFDFB488273A4CC4001CCBE3 /* Log.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Log.h; path = ../../../common/Log.h; sourceTree = "<group>"; };
+		DFDFB489273A4D36001CCBE3 /* HWCPipe.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCPipe.cpp; path = ../../../common/pipe/HWCPipe.cpp; sourceTree = "<group>"; };
+		DFDFB48A273A4D36001CCBE3 /* HWCPipe.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCPipe.hpp; path = ../../../common/pipe/HWCPipe.hpp; sourceTree = "<group>"; };
+		DFDFB48C273A4F03001CCBE3 /* HWCPipeInfo.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCPipeInfo.cpp; path = ../../../common/pipe/HWCPipeInfo.cpp; sourceTree = "<group>"; };
+		DFDFB48D273A4F03001CCBE3 /* HWCPipeInfo.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCPipeInfo.hpp; path = ../../../common/pipe/HWCPipeInfo.hpp; sourceTree = "<group>"; };
+		DFDFB48F273A506F001CCBE3 /* HWCAudioStreamNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCAudioStreamNode.cpp; path = ../../../common/node/process/HWCAudioStreamNode.cpp; sourceTree = "<group>"; };
+		DFDFB490273A506F001CCBE3 /* HWCAudioStreamNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCAudioStreamNode.hpp; path = ../../../common/node/process/HWCAudioStreamNode.hpp; sourceTree = "<group>"; };
+		DFDFB493273A50DF001CCBE3 /* HWCNodeBase.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = HWCNodeBase.hpp; path = ../../../common/base/HWCNodeBase.hpp; sourceTree = "<group>"; };
+		DFDFB495273A5202001CCBE3 /* HWCMp4MuxerNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCMp4MuxerNode.cpp; path = ../../../common/node/muxer/HWCMp4MuxerNode.cpp; sourceTree = "<group>"; };
+		DFDFB496273A5202001CCBE3 /* HWCMp4MuxerNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCMp4MuxerNode.hpp; path = ../../../common/node/muxer/HWCMp4MuxerNode.hpp; sourceTree = "<group>"; };
+		DFDFB498273A5412001CCBE3 /* HWCMP3EncoderNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCMP3EncoderNode.cpp; path = ../../../common/node/encoder/HWCMP3EncoderNode.cpp; sourceTree = "<group>"; };
+		DFDFB499273A5412001CCBE3 /* HWCMP3EncoderNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCMP3EncoderNode.hpp; path = ../../../common/node/encoder/HWCMP3EncoderNode.hpp; sourceTree = "<group>"; };
+		DFDFB49C273A620E001CCBE3 /* HWCPipeNodeRegister.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCPipeNodeRegister.hpp; path = ../../../common/pipe/HWCPipeNodeRegister.hpp; sourceTree = "<group>"; };
+		DFDFB49F273A6515001CCBE3 /* HWCPipeNodeRegister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HWCPipeNodeRegister.cpp; path = ../../../common/pipe/HWCPipeNodeRegister.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +108,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFDFB46F273A29E7001CCBE3 /* VideoToolbox.framework in Frameworks */,
+				DFDFB46D273A29D7001CCBE3 /* AVFoundation.framework in Frameworks */,
+				DFDFB471273A29EB001CCBE3 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -93,6 +138,7 @@
 				DFDFB44E273A214A001CCBE3 /* TestTests */,
 				DFDFB458273A214B001CCBE3 /* TestUITests */,
 				DFDFB42E273A2149001CCBE3 /* Products */,
+				DFDFB46B273A29D7001CCBE3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +155,8 @@
 		DFDFB42F273A2149001CCBE3 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				DFDFB493273A50DF001CCBE3 /* HWCNodeBase.hpp */,
+				DFDFB488273A4CC4001CCBE3 /* Log.h */,
 				DFDFB430273A2149001CCBE3 /* AppDelegate.h */,
 				DFDFB431273A2149001CCBE3 /* AppDelegate.m */,
 				DFDFB433273A2149001CCBE3 /* SceneDelegate.h */,
@@ -121,8 +169,31 @@
 				DFDFB444273A214A001CCBE3 /* Info.plist */,
 				DFDFB445273A214A001CCBE3 /* main.m */,
 				DFDFB43C273A2149001CCBE3 /* Test.xcdatamodeld */,
-				DFDFB468273A21EC001CCBE3 /* HWCAVCapture.h */,
-				DFDFB469273A21EC001CCBE3 /* HWCAVCapture.m */,
+				DFDFB468273A21EC001CCBE3 /* HWCAVCaptureBase.h */,
+				DFDFB469273A21EC001CCBE3 /* HWCAVCaptureBase.mm */,
+				DFDFB472273A2A45001CCBE3 /* HWCVideoCapture.h */,
+				DFDFB47F273A4845001CCBE3 /* HWCPipeParser.cpp */,
+				DFDFB480273A4845001CCBE3 /* HWCPipeParser.hpp */,
+				DFDFB473273A2A45001CCBE3 /* HWCVideoCapture.m */,
+				DFDFB475273A2A57001CCBE3 /* HWCAudioCapture.h */,
+				DFDFB476273A2A57001CCBE3 /* HWCAudioCapture.m */,
+				DFDFB478273A2EE3001CCBE3 /* HWCAVCapture.h */,
+				DFDFB479273A2EE3001CCBE3 /* HWCAVCapture.m */,
+				DFDFB47B273A2F7C001CCBE3 /* Define.h */,
+				DFDFB47E273A3013001CCBE3 /* config.json */,
+				DFDFB486273A4956001CCBE3 /* HWCAVStruct.hpp */,
+				DFDFB489273A4D36001CCBE3 /* HWCPipe.cpp */,
+				DFDFB48A273A4D36001CCBE3 /* HWCPipe.hpp */,
+				DFDFB48C273A4F03001CCBE3 /* HWCPipeInfo.cpp */,
+				DFDFB48D273A4F03001CCBE3 /* HWCPipeInfo.hpp */,
+				DFDFB48F273A506F001CCBE3 /* HWCAudioStreamNode.cpp */,
+				DFDFB490273A506F001CCBE3 /* HWCAudioStreamNode.hpp */,
+				DFDFB495273A5202001CCBE3 /* HWCMp4MuxerNode.cpp */,
+				DFDFB496273A5202001CCBE3 /* HWCMp4MuxerNode.hpp */,
+				DFDFB498273A5412001CCBE3 /* HWCMP3EncoderNode.cpp */,
+				DFDFB499273A5412001CCBE3 /* HWCMP3EncoderNode.hpp */,
+				DFDFB49C273A620E001CCBE3 /* HWCPipeNodeRegister.hpp */,
+				DFDFB49F273A6515001CCBE3 /* HWCPipeNodeRegister.cpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -142,6 +213,16 @@
 				DFDFB45B273A214B001CCBE3 /* TestUITestsLaunchTests.m */,
 			);
 			path = TestUITests;
+			sourceTree = "<group>";
+		};
+		DFDFB46B273A29D7001CCBE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DFDFB470273A29EB001CCBE3 /* AudioToolbox.framework */,
+				DFDFB46E273A29E7001CCBE3 /* VideoToolbox.framework */,
+				DFDFB46C273A29D7001CCBE3 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -274,12 +355,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DFDFB46A273A21EC001CCBE3 /* HWCAVCapture.m in Sources */,
+				DFDFB49E273A64A5001CCBE3 /* HWCPipeNodeRegister.hpp in Sources */,
+				DFDFB491273A506F001CCBE3 /* HWCAudioStreamNode.cpp in Sources */,
+				DFDFB47A273A2EE3001CCBE3 /* HWCAVCapture.m in Sources */,
+				DFDFB474273A2A45001CCBE3 /* HWCVideoCapture.m in Sources */,
+				DFDFB46A273A21EC001CCBE3 /* HWCAVCaptureBase.mm in Sources */,
+				DFDFB4A0273A6515001CCBE3 /* HWCPipeNodeRegister.cpp in Sources */,
+				DFDFB48B273A4D36001CCBE3 /* HWCPipe.cpp in Sources */,
 				DFDFB446273A214A001CCBE3 /* main.m in Sources */,
+				DFDFB497273A5202001CCBE3 /* HWCMp4MuxerNode.cpp in Sources */,
+				DFDFB481273A4845001CCBE3 /* HWCPipeParser.cpp in Sources */,
 				DFDFB438273A2149001CCBE3 /* ViewController.m in Sources */,
+				DFDFB49A273A5412001CCBE3 /* HWCMP3EncoderNode.cpp in Sources */,
+				DFDFB477273A2A57001CCBE3 /* HWCAudioCapture.m in Sources */,
 				DFDFB43E273A2149001CCBE3 /* Test.xcdatamodeld in Sources */,
 				DFDFB432273A2149001CCBE3 /* AppDelegate.m in Sources */,
 				DFDFB435273A2149001CCBE3 /* SceneDelegate.m in Sources */,
+				DFDFB48E273A4F03001CCBE3 /* HWCPipeInfo.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

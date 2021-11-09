@@ -6,6 +6,7 @@
 //
 
 #import "ViewController.h"
+#import "HWCVideoCapture.h"
 
 @interface ViewController ()
 
@@ -15,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [[[HWCVideoCapture alloc] init] stopCapture];
     // Do any additional setup after loading the view.
 }
 

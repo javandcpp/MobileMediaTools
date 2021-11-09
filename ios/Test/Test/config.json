@@ -1,0 +1,22 @@
+{"pipe":[
+    {
+        "stream":[
+        {"name":"process_audio","stream":"audiodenoise"},
+        {"name":"process_audio","stream":"audiomix"},
+        {"name":"process_video","stream":"videobeauty"},
+        {"name":"process_video","stream":"videoother"},
+        ]
+    },
+    {
+        "encoder":[
+        {"name":"encoder","stream":"audio","type":"mp3"},
+        {"name":"encoder","stream":"video","type":"h.264"}
+        ]
+        
+    },
+    {
+        "muxer":[
+        {"name":"process_audio","stream":"audio-video","type":"mp4"}
+        ]
+    }
+]}
