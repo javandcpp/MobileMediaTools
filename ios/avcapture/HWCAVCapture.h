@@ -10,9 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef enum{
+    MEDIA_VIDEO=0,MEDIA_AUDIO
+}MediaType;
+
 @interface HWCAVCapture : NSObject
 
--(void)startCapture:(CaptureType)type;
+-(void)startCapture:(MediaType)type;
 
 -(void)stopCapture;
 @end

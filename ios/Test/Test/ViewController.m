@@ -6,7 +6,7 @@
 //
 
 #import "ViewController.h"
-#import "HWCVideoCapture.h"
+#import "HWCAVCapture.h"
 
 @interface ViewController ()
 
@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [[[HWCVideoCapture alloc] init] stopCapture];
+    [[[HWCAVCapture alloc] init] startCapture:MEDIA_AUDIO];
     // Do any additional setup after loading the view.
 }
 

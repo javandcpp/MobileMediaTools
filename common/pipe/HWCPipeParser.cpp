@@ -19,8 +19,8 @@ int HWCPipeParser::parser(std::string json_str,HWCPipeInfo& hwcPipeInfo){
       }
 
       JSON result = JSON::parse(json_str.begin(), json_str.end());
-
       return HWCPipeInfo::parserFromJson(result, hwcPipeInfo);
+       
     } catch (std::exception &e) {
       LOGD("%s", e.what());
       return -1;

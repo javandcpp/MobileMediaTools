@@ -14,6 +14,7 @@
 class HWCMp4MuxerNode:public HWCNodeBase{
     
 public:
+    HWCMp4MuxerNode();
     ~HWCMp4MuxerNode();
     
     void inputData(AVFrameData* data)override;

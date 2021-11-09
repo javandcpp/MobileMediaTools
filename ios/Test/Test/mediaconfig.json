@@ -1,0 +1,19 @@
+{"pipe":[
+    {
+        "streams":[
+        {"name":"mp3encoder","type":0}
+        ]
+    },
+    {
+        "encoders":[
+        {"name":"mp3encoder","type":0},
+        {"name":"h264encoder","type":1}
+        ]
+        
+    },
+    {
+        "muxer":[
+        {"name":"mp4muxer","type":1}
+        ]
+    }
+]}

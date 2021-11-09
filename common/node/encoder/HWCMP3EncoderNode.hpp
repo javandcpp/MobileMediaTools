@@ -12,6 +12,7 @@
 #include "HWCNodeBase.hpp"
 class HWCMP3EncoderNode:public HWCNodeBase{
 public:
+    HWCMP3EncoderNode();
     ~HWCMP3EncoderNode();
     
     void inputData(AVFrameData* data)override;

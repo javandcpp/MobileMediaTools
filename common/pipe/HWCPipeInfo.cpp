@@ -6,6 +6,9 @@
 //
 
 #include "HWCPipeInfo.hpp"
+#include "HWCPipeNodeRegister.hpp"
+#include "Log.h"
+
 
 HWCPipeInfo::HWCPipeInfo(){
     
@@ -13,16 +16,34 @@ HWCPipeInfo::HWCPipeInfo(){
 
 int HWCPipeInfo::parserFromJson(JSON& json,HWCPipeInfo& hwcPipeInfo){
     
-    if(json.contains("stream")&&json["stream"].size()>0){
+    if(json.contains("pipe")){
+        auto &arrays=json["pipe"];
         
-        auto streams=json["stream"];
-        for (auto item:streams) {
-            
-//            std::make_shared<>(<#_Args &&__args...#>)
-//            streams.push_back()
+        for(auto item:arrays){
+            if(item.contains("streams")){
+                
+                auto streams=item["streams"];
+                for (auto item:streams) {
+        //            std::shared_ptr<HWCNodeBase> node=std::make_shared<HWCNodeBase>();
+                   
+        //            item["name"];
+        //            item["type"].get_to(node.mStreamType);
+                    std::string name;
+                    int type;
+                    item["name"].get_to(name);
+                    item["type"].get_to(type);
+                    
+                    std::shared_ptr<HWCNodeBase> *ptr=HWCPipeNodeRegister::getInstance().findNode(name,type);
+                    if(ptr){
+                        HWCNodeBase *node=ptr->get();
+                        LOGD("%s\n",node->getNodeName().c_str());
+                    }
+                   
+                }
+            }
         }
-            
-            
+        
+      
         
     }
     

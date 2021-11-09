@@ -1,47 +1,42 @@
-//
-//  HWCPipeNodeRegister.hpp
-//  Test
-//
-//  Created by developer on 2021/11/9.
-//
+#include "HWCPipeNodeRegister.hpp"
+#include "HWCMP3EncoderNode.hpp"
+#include "HWCMp4MuxerNode.hpp"
+#define AV_REGISTER_NODE(x) nodes.push_back(make_shared<x>());
 
-#ifndef HWCPipeNodeRegister_hpp
-#define HWCPipeNodeRegister_hpp
+//std::vector<std::shared_ptr<HWCNodeBase>> HWCPipeNodeRegister::nodes;
 
-#include <stdio.h>
-#include <iostream>
-#include <vector>
-#include "HWCNodeBase.hpp"
-using namespace std;
+HWCPipeNodeRegister::HWCPipeNodeRegister(){
+    avRegisterAllNode();
+}
 
+HWCPipeNodeRegister& HWCPipeNodeRegister::getInstance(){
+    static HWCPipeNodeRegister mPipeNoderegister;
+    return mPipeNoderegister;
+}
 
+void HWCPipeNodeRegister::avRegisterAllNode(){
+    AV_REGISTER_NODE(HWCMP3EncoderNode);
+    AV_REGISTER_NODE(HWCMp4MuxerNode);
+//    AV_REGISTER_NODE(HWCMP3EncoderNode);
+    
+}
 
-#endif /* HWCPipeNodeRegister_hpp */
-class HWCPipeNodeRegister{
-public:
-    static HWCPipeNodeRegister& getInstance();
-private:
-    HWCPipeNodeRegister(){
-        
+std::vector<std::shared_ptr<HWCNodeBase>>& HWCPipeNodeRegister::getNodes(){
+    return HWCPipeNodeRegister::nodes;
+}
+
+std::shared_ptr<HWCNodeBase>* HWCPipeNodeRegister::findNode(std::string& name,int type){
+    auto nodes_begin=getNodes().begin();
+    auto nodes_end=getNodes().end();
+    while (nodes_begin!=nodes_end) {
+        if(nodes_begin.base()){
+            HWCNodeBase* node=nodes_begin.base()->get();
+            if(node->getNodeName()==name&&node->getStreamType()==type){
+                return static_cast<std::shared_ptr<HWCNodeBase>*>(nodes_begin.base());
+            }
+        }
+        ++nodes_begin;
     }
-    
-    HWCPipeNodeRegister(const HWCPipeNodeRegister& hwcNodeRegister)=delete;
-    
-    HWCPipeNodeRegister(const HWCPipeNodeRegister&& hwcNodeRegister)=delete;
-    
-    HWCPipeNodeRegister& operator=(const HWCPipeNodeRegister&)=delete;
-    
-    HWCPipeNodeRegister& operator=(const HWCPipeNodeRegister&&)=delete;
-    
-    
-    static vector<shared_ptr<HWCNodeBase>> nodes;
-    
-  
-    
-    
-    void avRegisterAllNode(HWCNodeBase& node);
-    
-    
-  
-    
-};
+   
+    return nullptr;
+}

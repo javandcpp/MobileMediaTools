@@ -13,12 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 
+
 @interface HWCAVCaptureBase : NSObject
 
 
 -(void)createPipe;
 
--(void)startCapture:(CaptureType)captureType;
+//-(void)startCapture:(MediaType)captureType;
 
 -(void)stopCapture;
 

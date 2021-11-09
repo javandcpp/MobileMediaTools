@@ -5,9 +5,9 @@
 //  Created by developer on 2021/11/9.
 //
 
-#import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
+//NS_ASSUME_NONNULL_BEGIN
 
 typedef enum{
     VIDEO=0,AUDIO,VIDEO_NON_AUDIO,ALL
@@ -19,4 +19,6 @@ typedef enum{
 
 
 
-NS_ASSUME_NONNULL_END
+
+
+//NS_ASSUME_NONNULL_END

@@ -1,13 +1,56 @@
+//
+//  HWCPipeNodeRegister.hpp
+//  Test
+//
+//  Created by developer on 2021/11/9.
+//
 
-#include "HWCPipeNodeRegister.hpp"
-static vector<shared_ptr<HWCNodeBase>> HWCPipeNodeRegister::nodes;
+#ifndef HWCPipeNodeRegister_hpp
+#define HWCPipeNodeRegister_hpp
+
+#include <stdio.h>
+#include <iostream>
+#include <vector>
+#include "HWCNodeBase.hpp"
+using namespace std;
 
 
-static HWCPipeNodeRegister& getInstance(){
-    static HWCPipeNodeRegister hwcPipeNodeRegister;
-    return hwcPipeNodeRegister;
-}
 
-void HWCPipeNodeRegister::avRegisterAllNode(HWCNodeBase& node){
+
+class HWCPipeNodeRegister{
+public:
+    static HWCPipeNodeRegister& getInstance();
     
-}
+    vector<std::shared_ptr<HWCNodeBase>>& getNodes();
+    
+    std::shared_ptr<HWCNodeBase>* findNode(std::string& name,int type);
+    
+private:
+  
+    HWCPipeNodeRegister();
+    
+    HWCPipeNodeRegister(const HWCPipeNodeRegister& hwcNodeRegister)=delete;
+    
+    HWCPipeNodeRegister(const HWCPipeNodeRegister&& hwcNodeRegister)=delete;
+    
+    HWCPipeNodeRegister& operator=(const HWCPipeNodeRegister&)=delete;
+    
+    HWCPipeNodeRegister& operator=(const HWCPipeNodeRegister&&)=delete;
+    
+    
+    std::vector<std::shared_ptr<HWCNodeBase>> nodes;
+    
+    void avRegisterAllNode();
+    
+  
+    
+    
+    
+    
+    
+  
+    
+};
+
+
+#endif /* HWCPipeNodeRegister_hpp */

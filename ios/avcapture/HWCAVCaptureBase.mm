@@ -6,11 +6,11 @@
 //
 
 #import "HWCAVCaptureBase.h"
-#include "HWCPipe.hpp"
+
 
 
 @interface HWCAVCaptureBase(){
-    HWCPipe *pipe;
+//    HWCPipe *pipe;
 }
 
 @end
@@ -23,9 +23,10 @@
     
 }
 
--(void)startCapture:(CaptureType)captureType{
-//    [NSBundle mainBundle] pathForAuxiliaryExecutable:<#(nonnull NSString *)#>
-}
+//-(void)startCapture:(MediaType)captureType{
+//  
+//    
+//}
 
 -(void)stopCapture{
     
