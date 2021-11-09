@@ -18,6 +18,7 @@
 		DFDFB450273A214A001CCBE3 /* TestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB44F273A214A001CCBE3 /* TestTests.m */; };
 		DFDFB45A273A214B001CCBE3 /* TestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB459273A214B001CCBE3 /* TestUITests.m */; };
 		DFDFB45C273A214B001CCBE3 /* TestUITestsLaunchTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB45B273A214B001CCBE3 /* TestUITestsLaunchTests.m */; };
+		DFDFB46A273A21EC001CCBE3 /* HWCAVCapture.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB469273A21EC001CCBE3 /* HWCAVCapture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		DFDFB455273A214B001CCBE3 /* TestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFDFB459273A214B001CCBE3 /* TestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUITests.m; sourceTree = "<group>"; };
 		DFDFB45B273A214B001CCBE3 /* TestUITestsLaunchTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUITestsLaunchTests.m; sourceTree = "<group>"; };
+		DFDFB468273A21EC001CCBE3 /* HWCAVCapture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HWCAVCapture.h; path = ../../avcapture/HWCAVCapture.h; sourceTree = "<group>"; };
+		DFDFB469273A21EC001CCBE3 /* HWCAVCapture.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HWCAVCapture.m; path = ../../avcapture/HWCAVCapture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				DFDFB444273A214A001CCBE3 /* Info.plist */,
 				DFDFB445273A214A001CCBE3 /* main.m */,
 				DFDFB43C273A2149001CCBE3 /* Test.xcdatamodeld */,
+				DFDFB468273A21EC001CCBE3 /* HWCAVCapture.h */,
+				DFDFB469273A21EC001CCBE3 /* HWCAVCapture.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -269,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFDFB46A273A21EC001CCBE3 /* HWCAVCapture.m in Sources */,
 				DFDFB446273A214A001CCBE3 /* main.m in Sources */,
 				DFDFB438273A2149001CCBE3 /* ViewController.m in Sources */,
 				DFDFB43E273A2149001CCBE3 /* Test.xcdatamodeld in Sources */,
