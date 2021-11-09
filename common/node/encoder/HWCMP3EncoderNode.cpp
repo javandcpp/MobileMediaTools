@@ -18,7 +18,7 @@ HWCMP3EncoderNode::~HWCMP3EncoderNode(){
 }
 
 void HWCMP3EncoderNode::inputData(AVFrameData *data){
-    mNodeName="";
+  
 }
 
 void HWCMP3EncoderNode::outputData(AVFrameData *data){

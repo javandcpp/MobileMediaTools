@@ -46,24 +46,8 @@
             filePath = "../../common/pipe/HWCPipeInfo.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
-            landmarkName = "HWCPipeInfo::parserFromJson(json, hwcPipeInfo)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "828AE57C-5F75-4EF5-8A30-E75652A8AF5A"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../common/pipe/HWCPipeInfo.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "HWCPipeInfo::parserFromJson(json, hwcPipeInfo)"
             landmarkType = "7">
          </BreakpointContent>
@@ -119,65 +103,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "177C4452-58BD-4F63-93FC-C3A9119C24B5"
-            shouldBeEnabled = "Yes"
+            uuid = "02772023-676D-461D-92FB-FC78727C6C56"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "../../common/pipe/HWCPipeInfo.cpp"
+            filePath = "../../common/node/encoder/HWCMP3EncoderNode.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "HWCPipeInfo::parserFromJson(json, hwcPipeInfo)"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "HWCMP3EncoderNode::inputData(data)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "CC91D5F6-02E1-493D-9974-56970EA5D68F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "../../common/pipe/HWCPipeInfo.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "HWCPipeInfo::parserFromJson(json, hwcPipeInfo)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "CC91D5F6-02E1-493D-9974-56970EA5D68F - 60c502e52ec92979"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HWCPipeInfo::parserFromJson(nlohmann::basic_json&lt;std::__1::map, std::__1::vector, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, bool, long long, unsigned long long, double, std::__1::allocator, nlohmann::adl_serializer, std::__1::vector&lt;unsigned char, std::__1::allocator&lt;unsigned char&gt; &gt; &gt;&amp;, HWCPipeInfo&amp;)"
-                  moduleName = "Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huaweichang/Desktop/MobileMediaTools/common/pipe/HWCPipeInfo.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "832">
-               </Location>
-               <Location
-                  uuid = "CC91D5F6-02E1-493D-9974-56970EA5D68F - 60c502e52ec92979"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "HWCPipeInfo::parserFromJson(nlohmann::basic_json&lt;std::__1::map, std::__1::vector, std::__1::basic_string&lt;char, std::__1::char_traits&lt;char&gt;, std::__1::allocator&lt;char&gt; &gt;, bool, long long, unsigned long long, double, std::__1::allocator, nlohmann::adl_serializer, std::__1::vector&lt;unsigned char, std::__1::allocator&lt;unsigned char&gt; &gt; &gt;&amp;, HWCPipeInfo&amp;)"
-                  moduleName = "Test"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/huaweichang/Desktop/MobileMediaTools/common/pipe/HWCPipeInfo.cpp"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "42"
-                  endingLineNumber = "42"
-                  offsetFromSymbolStart = "844">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

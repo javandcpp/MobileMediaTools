@@ -36,6 +36,7 @@ int HWCPipeInfo::parserFromJson(JSON& json,HWCPipeInfo& hwcPipeInfo){
                     std::shared_ptr<HWCNodeBase> *ptr=HWCPipeNodeRegister::getInstance().findNode(name,type);
                     if(ptr){
                         HWCNodeBase *node=ptr->get();
+                        node->inputData(nullptr);
                         LOGD("%s\n",node->getNodeName().c_str());
                     }
                    
