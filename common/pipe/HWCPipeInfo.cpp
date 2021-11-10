@@ -32,14 +32,16 @@ int HWCPipeInfo::parserFromJson(JSON& json,HWCPipeInfo& hwcPipeInfo){
                     int type;
                     item["name"].get_to(name);
                     item["type"].get_to(type);
-                    
-                    std::shared_ptr<HWCNodeBase> *ptr=HWCPipeNodeRegister::getInstance().findNode(name,type);
-                    if(ptr){
-                        HWCNodeBase *node=ptr->get();
-                        node->inputData(nullptr);
-                        LOGD("%s\n",node->getNodeName().c_str());
+                    {
+                        std::shared_ptr<HWCNodeBase> ptr=HWCPipeNodeRegister::getInstance().findNode(name,type);
+                        
+                        LOGD("ptr usecount:%ld",ptr.use_count());
+                        if(ptr){
+                            HWCNodeBase *node=ptr.get();
+                            node->inputData(nullptr);
+                            LOGD("%s\n",node->getNodeName().c_str());
+                        }
                     }
-                   
                 }
             }
         }

@@ -16,12 +16,15 @@
 -(instancetype)init{
     self =[super init];
     if(self){
-        HWCPipeNodeRegister::getInstance();
+       
     }
     return self;
 }
 
 -(void)startCapture:(MediaType)type{
+    HWCPipeNodeRegister::getInstance().avRegisterAllNode();
+    HWCPipeNodeRegister::getInstance().avRegisterAllNode();
+    HWCPipeNodeRegister::getInstance().avRegisterAllNode();
     NSString *path=[[NSBundle mainBundle] pathForResource:@"mediaconfig" ofType:@"json"];
     NSError *error;
     NSString *contents=[NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];

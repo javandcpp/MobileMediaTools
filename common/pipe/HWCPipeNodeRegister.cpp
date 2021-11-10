@@ -1,12 +1,19 @@
 #include "HWCPipeNodeRegister.hpp"
 #include "HWCMP3EncoderNode.hpp"
 #include "HWCMp4MuxerNode.hpp"
-#define AV_REGISTER_NODE(x) nodes.push_back(make_shared<x>());
+#include "HWCAudioDenoiseNode.hpp"
+#include "Define.hpp"
+#include "Log.h"
+
+#define AV_REGISTER_ENCODER_NODE(x) encoderNodes.push_back(make_shared<x>());
+#define AV_REGISTER_STREAM_NODE(x) streamNodes.push_back(make_shared<x>());
+#define AV_REGISTER_MUXER_NODE(x) muxerNodes.push_back(make_shared<x>());
 
 //std::vector<std::shared_ptr<HWCNodeBase>> HWCPipeNodeRegister::nodes;
+std::once_flag HWCPipeNodeRegister::flag;
 
 HWCPipeNodeRegister::HWCPipeNodeRegister(){
-    avRegisterAllNode();
+   
 }
 
 HWCPipeNodeRegister& HWCPipeNodeRegister::getInstance(){
@@ -15,28 +22,77 @@ HWCPipeNodeRegister& HWCPipeNodeRegister::getInstance(){
 }
 
 void HWCPipeNodeRegister::avRegisterAllNode(){
-    AV_REGISTER_NODE(HWCMP3EncoderNode);
-    AV_REGISTER_NODE(HWCMp4MuxerNode);
-//    AV_REGISTER_NODE(HWCMP3EncoderNode);
-    
+    std::call_once(flag,[&]{
+        //register all nodes
+        AV_REGISTER_STREAM_NODE(HWCAudioDenoiseNode);
+        
+        AV_REGISTER_ENCODER_NODE(HWCMP3EncoderNode);
+        
+        AV_REGISTER_MUXER_NODE(HWCMp4MuxerNode);
+        LOGD("avRegisterAllNode\n");
+    });
 }
 
-std::vector<std::shared_ptr<HWCNodeBase>>& HWCPipeNodeRegister::getNodes(){
-    return HWCPipeNodeRegister::nodes;
+std::vector<std::shared_ptr<HWCNodeBase>>& HWCPipeNodeRegister::getStreamNodes(){
+    return HWCPipeNodeRegister::streamNodes;
+}
+std::vector<std::shared_ptr<HWCNodeBase>>& HWCPipeNodeRegister::getEncoderNodes(){
+    return HWCPipeNodeRegister::encoderNodes;
+}
+std::vector<std::shared_ptr<HWCNodeBase>>& HWCPipeNodeRegister::getMuxerNodes(){
+    return HWCPipeNodeRegister::muxerNodes;
 }
 
-std::shared_ptr<HWCNodeBase>* HWCPipeNodeRegister::findNode(std::string& name,int type){
-    auto nodes_begin=getNodes().begin();
-    auto nodes_end=getNodes().end();
-    while (nodes_begin!=nodes_end) {
-        if(nodes_begin.base()){
-            HWCNodeBase* node=nodes_begin.base()->get();
-            if(node->getNodeName()==name&&node->getStreamType()==type){
-                return static_cast<std::shared_ptr<HWCNodeBase>*>(nodes_begin.base());
-            }
-        }
-        ++nodes_begin;
+std::shared_ptr<HWCNodeBase> HWCPipeNodeRegister::findNode(std::string& name,int type){
+    if(name.begin()!=name.end()){
+        transform(name.begin(), name.end(), name.begin(), ::tolower);
+    }else{
+        return nullptr;
     }
-   
+
+
+    if(name.find("stream")!=string::npos){
+    
+        auto nodes_begin=getStreamNodes().begin();
+        auto nodes_end=getStreamNodes().end();
+        while (nodes_begin!=nodes_end) {
+            if(nodes_begin.base()){
+                HWCNodeBase* node=nodes_begin.base()->get();
+                if(node->getNodeName()==name&&node->getStreamType()==type){
+                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin.base());
+                }
+            }
+            ++nodes_begin;
+        }
+    }else if(name.find("encoder")!=string::npos){
+    
+        auto nodes_begin=getEncoderNodes().begin();
+        auto nodes_end=getEncoderNodes().end();
+        while (nodes_begin!=nodes_end) {
+            if(nodes_begin.base()){
+                HWCNodeBase* node=nodes_begin.base()->get();
+                if(node->getNodeName()==name&&node->getStreamType()==type){
+                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin.base());
+                }
+            }
+            ++nodes_begin;
+        }
+    }else if(name.find("muxer")!=string::npos){
+    
+        auto nodes_begin=getMuxerNodes().begin();
+        auto nodes_end=getMuxerNodes().end();
+        while (nodes_begin!=nodes_end) {
+            if(nodes_begin.base()){
+                HWCNodeBase* node=nodes_begin.base()->get();
+                if(node->getNodeName()==name&&node->getStreamType()==type){
+                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin.base());
+                }
+            }
+            ++nodes_begin;
+        }
+    }
+    
+    
+    
     return nullptr;
 }

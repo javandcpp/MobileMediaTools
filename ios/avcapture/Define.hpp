@@ -9,6 +9,9 @@
 
 //NS_ASSUME_NONNULL_BEGIN
 
+
+
+
 typedef enum{
     VIDEO=0,AUDIO,VIDEO_NON_AUDIO,ALL
 }CaptureType;
@@ -16,6 +19,8 @@ typedef enum{
 
 #define AUDIO_STREAM_TYPE     0
 #define VIDEO_STREAM_TYPE     1
+
+
 
 
 

@@ -5,21 +5,26 @@
 //  Created by developer on 2021/11/9.
 //
 
-#include "HWCAudioStreamNode.hpp"
+#include "HWCAudioDenoiseNode.hpp"
 #include "Log.h"
+#include "HWCNodeBase.hpp"
 
-HWCAudioStreamNode::~HWCAudioStreamNode(){
+HWCAudioDenoiseNode::HWCAudioDenoiseNode():HWCNodeBase("audiodenoisestream",0,0){
     
 }
 
-void HWCAudioStreamNode::inputData(AVFrameData *data){
+HWCAudioDenoiseNode::~HWCAudioDenoiseNode(){
+    
+}
+
+void HWCAudioDenoiseNode::inputData(AVFrameData *data){
     std::lock_guard<std::mutex> _lock(m_Mutex_in);
    
     
     this->outputData(data);
 }
 
-void HWCAudioStreamNode::outputData(AVFrameData *data){
+void HWCAudioDenoiseNode::outputData(AVFrameData *data){
     std::lock_guard<std::mutex> _lock(m_Mutex_out);
     
     

@@ -10,11 +10,11 @@
 
 #include <stdio.h>
 #include "HWCNodeBase.hpp"
-class HWCAudioStreamNode:public HWCNodeBase{
+class HWCAudioDenoiseNode:public HWCNodeBase{
     
 public:
-    ~HWCAudioStreamNode();
-    
+    HWCAudioDenoiseNode();
+    ~HWCAudioDenoiseNode();
     void inputData(AVFrameData* data)override;
     void outputData(AVFrameData* data)override;
 };

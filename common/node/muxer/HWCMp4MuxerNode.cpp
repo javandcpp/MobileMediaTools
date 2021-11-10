@@ -6,7 +6,7 @@
 //
 
 #include "HWCMp4MuxerNode.hpp"
-#include "Define.h"
+#include "Define.hpp"
 
 HWCMp4MuxerNode::HWCMp4MuxerNode():HWCNodeBase("mp4muxer",VIDEO_STREAM_TYPE,VIDEO_STREAM_TYPE){
     

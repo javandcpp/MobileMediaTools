@@ -21,10 +21,13 @@ class HWCPipeNodeRegister{
 public:
     static HWCPipeNodeRegister& getInstance();
     
-    vector<std::shared_ptr<HWCNodeBase>>& getNodes();
+    vector<std::shared_ptr<HWCNodeBase>>& getStreamNodes();
+    vector<std::shared_ptr<HWCNodeBase>>& getEncoderNodes();
+    vector<std::shared_ptr<HWCNodeBase>>& getMuxerNodes();
     
-    std::shared_ptr<HWCNodeBase>* findNode(std::string& name,int type);
+    std::shared_ptr<HWCNodeBase> findNode(std::string& name,int type);
     
+    void avRegisterAllNode();
 private:
   
     HWCPipeNodeRegister();
@@ -38,9 +41,12 @@ private:
     HWCPipeNodeRegister& operator=(const HWCPipeNodeRegister&&)=delete;
     
     
-    std::vector<std::shared_ptr<HWCNodeBase>> nodes;
+    std::vector<std::shared_ptr<HWCNodeBase>> streamNodes;
+    std::vector<std::shared_ptr<HWCNodeBase>> encoderNodes;
+    std::vector<std::shared_ptr<HWCNodeBase>> muxerNodes;
     
-    void avRegisterAllNode();
+    static std::once_flag flag;
+
     
   
     

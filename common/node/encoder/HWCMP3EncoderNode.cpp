@@ -6,7 +6,7 @@
 //
 
 #include "HWCMP3EncoderNode.hpp"
-#include "Define.h"
+#include "Define.hpp"
 #include "Log.h"
 
 

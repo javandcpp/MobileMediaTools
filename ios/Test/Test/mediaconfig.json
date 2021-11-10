@@ -1,7 +1,7 @@
 {"pipe":[
     {
         "streams":[
-        {"name":"mp3encoder","type":0}
+        {"name":"audioDenoisestream","type":0}
         ]
     },
     {
