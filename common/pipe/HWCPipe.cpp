@@ -6,6 +6,7 @@
 //
 
 #include "HWCPipe.hpp"
+#include "Define.hpp"
 HWCPipe::HWCPipe(){
     
 }
@@ -15,18 +16,53 @@ HWCPipe::~HWCPipe(){
 }
 
 void HWCPipe::pipeTransportData(AVFrameData* data){
-    HWCNodeBase* nodeHead=head.get();
-    nodeHead->inputData(data);
+    std::lock_guard<std::mutex> lock(m_Mutex);
+    if(data->stream_type==AUDIO_STREAM_TYPE){
+        if(audioSinkHead){
+            audioSinkHead->inputData(data);
+        }
+    }else if(data->stream_type==VIDEO_STREAM_TYPE){
+        if(videoSinkHead){
+            videoSinkHead->inputData(data);
+        }
+    }
 }
 
 
-std::shared_ptr<HWCPipe> HWCPipe::createPipe(HWCPipeInfo &pipeInfo){
+void HWCPipe::createPipe(HWCPipeInfo *pipeInfo){
+    std::lock_guard<std::mutex> lock(m_Mutex);
+    if(pipeInfo){
+//        std::vector<std::shared_ptr<HWCNodeBase>> &nodes=
+        auto& nodes=pipeInfo->getPipeNodes();
+        
+        auto start=nodes.begin();
+        while (start!=nodes.end()) {
+            
+            auto nodePtr=start.base();
+            HWCNodeBase* node=nodePtr->get();
+            if(node->sink.lock()&&node->getStreamType()==VIDEO_STREAM_TYPE){
+                videoSinkHead=node->sink.lock();
+            }else if(node->sink_2.lock()&&node->getStreamType()==VIDEO_STREAM_TYPE){
+                videoSinkHead=node->sink_2.lock();
+            }else if(node->sink.lock()&&node->getStreamType()==AUDIO_STREAM_TYPE){
+                audioSinkHead=node->sink.lock();
+            }else if(node->sink_2.lock()&&node->getStreamType()==AUDIO_STREAM_TYPE){
+                audioSinkHead=node->sink_2.lock();
+            }
+            
+            
+            ++start;
+        }
+        
+//        auto start=
+//        while (start!=end) {
+//            std::shared_ptr<HWCNodeBase> *pipeNode=start.base();
+//
+//
+//            ++start;
+//        }
+    }
     
+
     
-    
-    
-    
-    
-    
-    return std::make_shared<HWCPipe>();
 }

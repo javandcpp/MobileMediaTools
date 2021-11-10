@@ -10,20 +10,21 @@
 #include "HWCPipeInfo.hpp"
 using namespace std;
 std::mutex HWCPipeParser::mutex;
-int HWCPipeParser::parser(std::string json_str,HWCPipeInfo& hwcPipeInfo){
+std::shared_ptr<HWCPipeInfo> HWCPipeParser::parser(std::string json_str){
     lock_guard<std::mutex> _lock(HWCPipeParser::mutex);
     try {
-      if (json_str.empty()) {
-        LOGD("json_str==empty()");
-        return -1;
-      }
-
-      JSON result = JSON::parse(json_str.begin(), json_str.end());
-      return HWCPipeInfo::parserFromJson(result, hwcPipeInfo);
-       
+        if (json_str.empty()) {
+            LOGD("json_str==empty()");
+            return nullptr;
+        }
+        
+        JSON result = JSON::parse(json_str.begin(), json_str.end());
+        std::shared_ptr<HWCPipeInfo> sp=std::make_shared<HWCPipeInfo>();
+        sp->parserFromJson(result);
+        return sp;
+        
     } catch (std::exception &e) {
-      LOGD("%s", e.what());
-      return -1;
+        LOGD("%s", e.what());
     }
-    return 0;
+    return nullptr;
 }

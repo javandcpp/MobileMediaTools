@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF717F81273BA8E500635B5D /* HWCH264EncoderNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF717F7F273BA8E500635B5D /* HWCH264EncoderNode.cpp */; };
+		DF717F84273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF717F82273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp */; };
+		DF717F9F273BC06700635B5D /* MyNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF717F9B273BC06600635B5D /* MyNaviViewController.m */; };
+		DF717FA0273BC06700635B5D /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF717F9E273BC06700635B5D /* HomeViewController.m */; };
 		DF9B8182273A68B900396003 /* HWCPipeNodeRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF9B8181273A68B900396003 /* HWCPipeNodeRegister.cpp */; };
 		DF9B8183273A7C8E00396003 /* mediaconfig.json in Resources */ = {isa = PBXBuildFile; fileRef = DFDFB47E273A3013001CCBE3 /* mediaconfig.json */; };
 		DFDFB432273A2149001CCBE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB431273A2149001CCBE3 /* AppDelegate.m */; };
@@ -54,6 +58,14 @@
 
 /* Begin PBXFileReference section */
 		DF717F7E273B6B6700635B5D /* Define.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Define.hpp; path = ../../avcapture/Define.hpp; sourceTree = "<group>"; };
+		DF717F7F273BA8E500635B5D /* HWCH264EncoderNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCH264EncoderNode.cpp; path = ../../../common/node/encoder/HWCH264EncoderNode.cpp; sourceTree = "<group>"; };
+		DF717F80273BA8E500635B5D /* HWCH264EncoderNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCH264EncoderNode.hpp; path = ../../../common/node/encoder/HWCH264EncoderNode.hpp; sourceTree = "<group>"; };
+		DF717F82273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCVideoStreamProcessNode.cpp; path = ../../../common/node/process/HWCVideoStreamProcessNode.cpp; sourceTree = "<group>"; };
+		DF717F83273BAEC800635B5D /* HWCVideoStreamProcessNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCVideoStreamProcessNode.hpp; path = ../../../common/node/process/HWCVideoStreamProcessNode.hpp; sourceTree = "<group>"; };
+		DF717F9B273BC06600635B5D /* MyNaviViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyNaviViewController.m; sourceTree = "<group>"; };
+		DF717F9C273BC06600635B5D /* MyNaviViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyNaviViewController.h; sourceTree = "<group>"; };
+		DF717F9D273BC06600635B5D /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		DF717F9E273BC06700635B5D /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DF9B8181273A68B900396003 /* HWCPipeNodeRegister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HWCPipeNodeRegister.cpp; path = ../../../common/pipe/HWCPipeNodeRegister.cpp; sourceTree = "<group>"; };
 		DFDFB42D273A2149001CCBE3 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFDFB430273A2149001CCBE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -155,6 +167,10 @@
 		DFDFB42F273A2149001CCBE3 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				DF717F9D273BC06600635B5D /* HomeViewController.h */,
+				DF717F9E273BC06700635B5D /* HomeViewController.m */,
+				DF717F9C273BC06600635B5D /* MyNaviViewController.h */,
+				DF717F9B273BC06600635B5D /* MyNaviViewController.m */,
 				DF717F7E273B6B6700635B5D /* Define.hpp */,
 				DFDFB493273A50DF001CCBE3 /* HWCNodeBase.hpp */,
 				DFDFB488273A4CC4001CCBE3 /* Log.h */,
@@ -194,6 +210,10 @@
 				DFDFB499273A5412001CCBE3 /* HWCMP3EncoderNode.hpp */,
 				DFDFB49C273A620E001CCBE3 /* HWCPipeNodeRegister.hpp */,
 				DF9B8181273A68B900396003 /* HWCPipeNodeRegister.cpp */,
+				DF717F7F273BA8E500635B5D /* HWCH264EncoderNode.cpp */,
+				DF717F80273BA8E500635B5D /* HWCH264EncoderNode.hpp */,
+				DF717F82273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp */,
+				DF717F83273BAEC800635B5D /* HWCVideoStreamProcessNode.hpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -360,12 +380,16 @@
 				DFDFB47A273A2EE3001CCBE3 /* HWCAVCapture.mm in Sources */,
 				DFDFB474273A2A45001CCBE3 /* HWCVideoCapture.mm in Sources */,
 				DF9B8182273A68B900396003 /* HWCPipeNodeRegister.cpp in Sources */,
+				DF717F84273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp in Sources */,
+				DF717FA0273BC06700635B5D /* HomeViewController.m in Sources */,
 				DFDFB46A273A21EC001CCBE3 /* HWCAVCaptureBase.mm in Sources */,
 				DFDFB48B273A4D36001CCBE3 /* HWCPipe.cpp in Sources */,
 				DFDFB446273A214A001CCBE3 /* main.m in Sources */,
+				DF717F9F273BC06700635B5D /* MyNaviViewController.m in Sources */,
 				DFDFB497273A5202001CCBE3 /* HWCMp4MuxerNode.cpp in Sources */,
 				DFDFB481273A4845001CCBE3 /* HWCPipeParser.cpp in Sources */,
 				DFDFB438273A2149001CCBE3 /* ViewController.m in Sources */,
+				DF717F81273BA8E500635B5D /* HWCH264EncoderNode.cpp in Sources */,
 				DFDFB49A273A5412001CCBE3 /* HWCMP3EncoderNode.cpp in Sources */,
 				DFDFB477273A2A57001CCBE3 /* HWCAudioCapture.mm in Sources */,
 				DFDFB43E273A2149001CCBE3 /* Test.xcdatamodeld in Sources */,
@@ -544,6 +568,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3F3G95KJ85;
@@ -571,6 +596,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3F3G95KJ85;

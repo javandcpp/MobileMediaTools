@@ -1,19 +1,20 @@
 {"pipe":[
     {
         "streams":[
-        {"name":"audioDenoisestream","type":0}
+        {"name":"audiodenoisestream","type":0,"source":"mp3encoder"},
+        {"name":"videoprocessstream","type":1,"source":"h264encoder"}
         ]
     },
     {
         "encoders":[
-        {"name":"mp3encoder","type":0},
-        {"name":"h264encoder","type":1}
+        {"name":"mp3encoder","type":0,"source":"mp4muxer"},
+        {"name":"h264encoder","type":1,"source":"mp4muxer"}
         ]
         
     },
     {
-        "muxer":[
-        {"name":"mp4muxer","type":1}
+        "muxers":[
+        {"name":"mp4muxer","type":2}
         ]
     }
 ]}

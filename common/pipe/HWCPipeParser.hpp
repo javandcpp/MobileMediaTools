@@ -17,7 +17,7 @@ class HWCPipeParser{
     
     
 public:
-    static int parser(std::string json_str,HWCPipeInfo& hwcpipeInfo);
+    static std::shared_ptr<HWCPipeInfo> parser(std::string json_str);
     
     static std::mutex mutex;
 };

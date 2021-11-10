@@ -36,8 +36,10 @@ public:
     virtual void inputData(AVFrameData* data){};
     virtual void outputData(AVFrameData* data){};
     
-    std::shared_ptr<HWCNodeBase> sink;//输入节点
-    std::shared_ptr<HWCNodeBase> source;//输出节点，下游分发数据
+    std::weak_ptr<HWCNodeBase> sink;//输入节点
+    std::weak_ptr<HWCNodeBase> sink_2;//输入节点
+    std::weak_ptr<HWCNodeBase> sink_3;//输入节点
+    std::weak_ptr<HWCNodeBase> source;//输出节点，下游分发数据
     
     void setNodeName(std::string& str){
         this->mNodeName=str;
@@ -53,15 +55,24 @@ public:
     void setStreamType(int type){
         this->mStreamType=type;
     }
+    
+    void setSource(std::string& source){
+        this->mSource=source;
+    }
+    
+    std::string& getSource(){
+        return this->mSource;
+    }
+    
 protected:
     virtual ~HWCNodeBase(){};
     
     HWCNodeBase(){};
     
-    HWCNodeBase(std::string name,int streamType=-1,int encoderType=-1){
+    HWCNodeBase(std::string name,int streamType=-1){
         this->mNodeName=name;
         this->mStreamType=streamType;
-        this->mEncoderType=encoderType;
+//        this->mEncoderType=encoderType;
     }
    
     
@@ -69,8 +80,9 @@ protected:
     std::mutex m_Mutex_out;
     
     std::string mNodeName;
+    std::string mSource;
     int mStreamType;
-    int mEncoderType;
+//    int mEncoderType;
     
 };
 

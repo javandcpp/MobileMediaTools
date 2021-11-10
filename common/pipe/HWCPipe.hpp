@@ -18,14 +18,19 @@ public:
     
     ~HWCPipe();
     
-    std::shared_ptr<HWCNodeBase> head;
-    std::shared_ptr<HWCNodeBase> tail;
+    std::shared_ptr<HWCNodeBase> audioSinkHead;
+    std::shared_ptr<HWCNodeBase> videoSinkHead;
     
-    
-private:
-    std::shared_ptr<HWCPipe> createPipe(HWCPipeInfo& pipeInfo);
+    void createPipe(HWCPipeInfo* pipeInfo);
     
     void pipeTransportData(AVFrameData* data);
+    
+private:
+   
+    
+   
+    
+    std::mutex m_Mutex;
     
     
 };

@@ -10,7 +10,7 @@
 #include "Log.h"
 
 
-HWCMP3EncoderNode::HWCMP3EncoderNode():HWCNodeBase("mp3encoder",AUDIO_STREAM_TYPE,AUDIO_STREAM_TYPE){
+HWCMP3EncoderNode::HWCMP3EncoderNode():HWCNodeBase("mp3encoder",AUDIO_STREAM_TYPE){
     LOG(HWCMP3EncoderNode);
 }
 
@@ -18,9 +18,17 @@ HWCMP3EncoderNode::~HWCMP3EncoderNode(){
 }
 
 void HWCMP3EncoderNode::inputData(AVFrameData *data){
-  
+    std::lock_guard<std::mutex> _lock(m_Mutex_in);
+    LOGD("inputData streamType:%d",data->stream_type);
+    this->outputData(data);
 }
 
 void HWCMP3EncoderNode::outputData(AVFrameData *data){
-    
+    std::lock_guard<std::mutex> _lock(m_Mutex_out);
+    LOGD("outputData");
+    if(source.lock()){
+        std::shared_ptr<HWCNodeBase> sp=source.lock();
+
+        source.lock()->inputData(data);
+    }
 }

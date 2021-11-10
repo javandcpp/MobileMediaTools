@@ -17,8 +17,9 @@ typedef enum{
 }CaptureType;
 
 
-#define AUDIO_STREAM_TYPE     0
-#define VIDEO_STREAM_TYPE     1
+#define AUDIO_STREAM_TYPE       0
+#define VIDEO_STREAM_TYPE       1
+#define AUDIO_VIDEO_STREAM_TYPE 2
 
 
 

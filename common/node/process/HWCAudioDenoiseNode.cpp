@@ -8,8 +8,9 @@
 #include "HWCAudioDenoiseNode.hpp"
 #include "Log.h"
 #include "HWCNodeBase.hpp"
+#include "Define.hpp"
 
-HWCAudioDenoiseNode::HWCAudioDenoiseNode():HWCNodeBase("audiodenoisestream",0,0){
+HWCAudioDenoiseNode::HWCAudioDenoiseNode():HWCNodeBase("audiodenoisestream",AUDIO_STREAM_TYPE){
     
 }
 
@@ -19,18 +20,14 @@ HWCAudioDenoiseNode::~HWCAudioDenoiseNode(){
 
 void HWCAudioDenoiseNode::inputData(AVFrameData *data){
     std::lock_guard<std::mutex> _lock(m_Mutex_in);
-   
-    
+    LOGD("inputData streamType:%d",data->stream_type);
     this->outputData(data);
 }
 
 void HWCAudioDenoiseNode::outputData(AVFrameData *data){
     std::lock_guard<std::mutex> _lock(m_Mutex_out);
-    
-    
-    LOGD("inputData");
-    HWCNodeBase* node=source.get();
-    if(node){
-        node->inputData(data);
+    LOGD("outputData");
+    if(source.lock()){
+        source.lock()->inputData(data);
     }
 }

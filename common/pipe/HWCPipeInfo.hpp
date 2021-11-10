@@ -13,14 +13,14 @@
 #include "HWCNodeBase.hpp"
 class HWCPipeInfo{
     
-    
-    std::vector<std::shared_ptr<HWCNodeBase>> streams;
-    std::vector<std::shared_ptr<HWCNodeBase>> encoders;
-    std::vector<std::shared_ptr<HWCNodeBase>> muxers;
+private:
+    std::vector<std::shared_ptr<HWCNodeBase>> pipeNodes;
     
 public:
+    std::vector<std::shared_ptr<HWCNodeBase>>& getPipeNodes();
     HWCPipeInfo();
-    static int parserFromJson(JSON& json,HWCPipeInfo& hwcPipeInfo);
+    void parserFromJson(JSON& json);
+    std::mutex m_Mutex;
     
 };
 

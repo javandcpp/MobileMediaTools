@@ -25,7 +25,7 @@ public:
     vector<std::shared_ptr<HWCNodeBase>>& getEncoderNodes();
     vector<std::shared_ptr<HWCNodeBase>>& getMuxerNodes();
     
-    std::shared_ptr<HWCNodeBase> findNode(std::string& name,int type);
+    std::shared_ptr<HWCNodeBase> findNode(std::string& name);
     
     void avRegisterAllNode();
 private:
@@ -39,7 +39,6 @@ private:
     HWCPipeNodeRegister& operator=(const HWCPipeNodeRegister&)=delete;
     
     HWCPipeNodeRegister& operator=(const HWCPipeNodeRegister&&)=delete;
-    
     
     std::vector<std::shared_ptr<HWCNodeBase>> streamNodes;
     std::vector<std::shared_ptr<HWCNodeBase>> encoderNodes;
