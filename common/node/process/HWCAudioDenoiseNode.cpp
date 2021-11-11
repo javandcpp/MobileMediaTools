@@ -31,3 +31,7 @@ void HWCAudioDenoiseNode::outputData(AVFrameData *data){
         source.lock()->inputData(data);
     }
 }
+
+void HWCAudioDenoiseNode::onEvent(HWCEvent& event){
+    LOGD("onEvent:%d isAsync:%d",event.eventType,event.isAsync);
+}

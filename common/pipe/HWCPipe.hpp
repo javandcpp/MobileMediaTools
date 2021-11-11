@@ -12,6 +12,8 @@
 #include <iostream>
 #include "HWCPipeInfo.hpp"
 #include "HWCNodeBase.hpp"
+#include "HWCEventBus.hpp"
+#include "HWCTemplate.hpp"
 class HWCPipe{
 public:
     HWCPipe();
@@ -25,10 +27,15 @@ public:
     
     void pipeTransportData(AVFrameData* data);
     
-private:
-   
+    void registerEventBus(HWCPipeInfo *pipeInfo);
     
-   
+    void unRegisterEventBus();
+    
+    void postAsyncEvent(HWCEvent& event);
+    
+    void postSyncEvent(HWCEvent& event);
+    
+private:
     
     std::mutex m_Mutex;
     

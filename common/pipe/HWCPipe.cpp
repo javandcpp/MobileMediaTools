@@ -27,6 +27,33 @@ void HWCPipe::pipeTransportData(AVFrameData* data){
         }
     }
 }
+void HWCPipe::registerEventBus(HWCPipeInfo *pipeInfo){
+    std::lock_guard<std::mutex> lock(m_Mutex);
+    auto& nodes=pipeInfo->getPipeNodes();
+    auto start=nodes.begin();
+    while (start!=nodes.end()) {
+        
+        auto nodePtr=start.base();
+        SingleInstance<HWCEventBus>::getInstance().registerEvent(*nodePtr);
+        ++start;
+    }
+}
+
+
+void HWCPipe::unRegisterEventBus(){
+    std::lock_guard<std::mutex> lock(m_Mutex);
+    SingleInstance<HWCEventBus>::getInstance().unregisterEvent();
+}
+
+void HWCPipe::postSyncEvent(HWCEvent &event){
+    std::lock_guard<std::mutex> lock(m_Mutex);
+    SingleInstance<HWCEventBus>::getInstance().postSyncEvent(event);
+}
+
+void HWCPipe::postAsyncEvent(HWCEvent& event){
+    std::lock_guard<std::mutex> lock(m_Mutex);
+    SingleInstance<HWCEventBus>::getInstance().postAsyncEvent(event);
+}
 
 
 void HWCPipe::createPipe(HWCPipeInfo *pipeInfo){
@@ -50,6 +77,8 @@ void HWCPipe::createPipe(HWCPipeInfo *pipeInfo){
                 audioSinkHead=node->sink_2.lock();
             }
             
+            
+           
             
             ++start;
         }

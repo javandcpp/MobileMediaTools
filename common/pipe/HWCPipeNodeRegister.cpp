@@ -34,6 +34,7 @@ void HWCPipeNodeRegister::avRegisterAllNode(){
         AV_REGISTER_ENCODER_NODE(HWCH264EncoderNode);
         
         AV_REGISTER_MUXER_NODE(HWCMp4MuxerNode);
+
     });
 }
 

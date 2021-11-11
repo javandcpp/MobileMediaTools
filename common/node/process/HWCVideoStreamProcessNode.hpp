@@ -18,6 +18,7 @@ public:
     ~HWCVideoStreamProcessNode();
     void inputData(AVFrameData* data)override;
     void outputData(AVFrameData* data)override;
+    void onEvent(HWCEvent& event)override;
 };
 
 #endif /* HWCVideoStreamProcessNode_hpp */

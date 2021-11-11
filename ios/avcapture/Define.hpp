@@ -9,7 +9,8 @@
 
 //NS_ASSUME_NONNULL_BEGIN
 
-
+#ifndef DEFINE_H
+#define DEFINE_H
 
 
 typedef enum{
@@ -22,7 +23,7 @@ typedef enum{
 #define AUDIO_VIDEO_STREAM_TYPE 2
 
 
-
+#endif
 
 
 

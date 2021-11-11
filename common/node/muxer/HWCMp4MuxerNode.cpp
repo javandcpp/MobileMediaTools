@@ -30,3 +30,7 @@ void HWCMp4MuxerNode::outputData(AVFrameData *data){
     }
 }
 
+void HWCMp4MuxerNode::onEvent(HWCEvent& event){
+    LOGD("onEvent:%d isAsync:%d",event.eventType,event.isAsync);
+}
+

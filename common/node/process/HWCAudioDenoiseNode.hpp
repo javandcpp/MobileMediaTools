@@ -17,5 +17,6 @@ public:
     ~HWCAudioDenoiseNode();
     void inputData(AVFrameData* data)override;
     void outputData(AVFrameData* data)override;
+    void onEvent(HWCEvent& event)override;
 };
 #endif /* AudioStreamNode_hpp */

@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "../include/json_header.h"
 #include "HWCNodeBase.hpp"
+
 class HWCPipeInfo{
     
 private:

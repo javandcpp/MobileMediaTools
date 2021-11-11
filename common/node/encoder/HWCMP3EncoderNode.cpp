@@ -32,3 +32,7 @@ void HWCMP3EncoderNode::outputData(AVFrameData *data){
         source.lock()->inputData(data);
     }
 }
+
+void HWCMP3EncoderNode::onEvent(HWCEvent& event){
+    LOGD("onEvent:%d isAsync:%d",event.eventType,event.isAsync);
+}

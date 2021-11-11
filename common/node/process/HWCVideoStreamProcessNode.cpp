@@ -30,3 +30,7 @@ void HWCVideoStreamProcessNode::outputData(AVFrameData *data){
         source.lock()->inputData(data);
     }
 }
+
+void HWCVideoStreamProcessNode::onEvent(HWCEvent& event){
+    LOGD("onEvent:%d isAsync:%d",event.eventType,event.isAsync);
+}

@@ -13,6 +13,7 @@
 		DF717FA0273BC06700635B5D /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF717F9E273BC06700635B5D /* HomeViewController.m */; };
 		DF9B8182273A68B900396003 /* HWCPipeNodeRegister.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF9B8181273A68B900396003 /* HWCPipeNodeRegister.cpp */; };
 		DF9B8183273A7C8E00396003 /* mediaconfig.json in Resources */ = {isa = PBXBuildFile; fileRef = DFDFB47E273A3013001CCBE3 /* mediaconfig.json */; };
+		DFDECE4F273CEBEA0024E96E /* HWCEventBus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFDECE4D273CEBEA0024E96E /* HWCEventBus.cpp */; };
 		DFDFB432273A2149001CCBE3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB431273A2149001CCBE3 /* AppDelegate.m */; };
 		DFDFB435273A2149001CCBE3 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB434273A2149001CCBE3 /* SceneDelegate.m */; };
 		DFDFB438273A2149001CCBE3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DFDFB437273A2149001CCBE3 /* ViewController.m */; };
@@ -67,6 +68,11 @@
 		DF717F9D273BC06600635B5D /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		DF717F9E273BC06700635B5D /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		DF9B8181273A68B900396003 /* HWCPipeNodeRegister.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = HWCPipeNodeRegister.cpp; path = ../../../common/pipe/HWCPipeNodeRegister.cpp; sourceTree = "<group>"; };
+		DFDECE4B273CE8F60024E96E /* HWCEventBase.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCEventBase.hpp; path = ../../../common/base/HWCEventBase.hpp; sourceTree = "<group>"; };
+		DFDECE4D273CEBEA0024E96E /* HWCEventBus.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCEventBus.cpp; path = ../../../common/event/HWCEventBus.cpp; sourceTree = "<group>"; };
+		DFDECE4E273CEBEA0024E96E /* HWCEventBus.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCEventBus.hpp; path = ../../../common/event/HWCEventBus.hpp; sourceTree = "<group>"; };
+		DFDECE51273CEC130024E96E /* HWCTemplate.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCTemplate.hpp; path = ../../../common/HWCTemplate.hpp; sourceTree = "<group>"; };
+		DFDECE54273CF1AC0024E96E /* HWCEvent.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCEvent.hpp; path = ../../../common/event/HWCEvent.hpp; sourceTree = "<group>"; };
 		DFDFB42D273A2149001CCBE3 /* Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DFDFB430273A2149001CCBE3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DFDFB431273A2149001CCBE3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -171,8 +177,6 @@
 				DF717F9E273BC06700635B5D /* HomeViewController.m */,
 				DF717F9C273BC06600635B5D /* MyNaviViewController.h */,
 				DF717F9B273BC06600635B5D /* MyNaviViewController.m */,
-				DF717F7E273B6B6700635B5D /* Define.hpp */,
-				DFDFB493273A50DF001CCBE3 /* HWCNodeBase.hpp */,
 				DFDFB488273A4CC4001CCBE3 /* Log.h */,
 				DFDFB430273A2149001CCBE3 /* AppDelegate.h */,
 				DFDFB431273A2149001CCBE3 /* AppDelegate.m */,
@@ -198,6 +202,7 @@
 				DFDFB479273A2EE3001CCBE3 /* HWCAVCapture.mm */,
 				DFDFB47E273A3013001CCBE3 /* mediaconfig.json */,
 				DFDFB486273A4956001CCBE3 /* HWCAVStruct.hpp */,
+				DF717F7E273B6B6700635B5D /* Define.hpp */,
 				DFDFB489273A4D36001CCBE3 /* HWCPipe.cpp */,
 				DFDFB48A273A4D36001CCBE3 /* HWCPipe.hpp */,
 				DFDFB48C273A4F03001CCBE3 /* HWCPipeInfo.cpp */,
@@ -214,6 +219,12 @@
 				DF717F80273BA8E500635B5D /* HWCH264EncoderNode.hpp */,
 				DF717F82273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp */,
 				DF717F83273BAEC800635B5D /* HWCVideoStreamProcessNode.hpp */,
+				DFDFB493273A50DF001CCBE3 /* HWCNodeBase.hpp */,
+				DFDECE4B273CE8F60024E96E /* HWCEventBase.hpp */,
+				DFDECE4D273CEBEA0024E96E /* HWCEventBus.cpp */,
+				DFDECE4E273CEBEA0024E96E /* HWCEventBus.hpp */,
+				DFDECE51273CEC130024E96E /* HWCTemplate.hpp */,
+				DFDECE54273CF1AC0024E96E /* HWCEvent.hpp */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -394,6 +405,7 @@
 				DFDFB477273A2A57001CCBE3 /* HWCAudioCapture.mm in Sources */,
 				DFDFB43E273A2149001CCBE3 /* Test.xcdatamodeld in Sources */,
 				DFDFB432273A2149001CCBE3 /* AppDelegate.m in Sources */,
+				DFDECE4F273CEBEA0024E96E /* HWCEventBus.cpp in Sources */,
 				DFDFB435273A2149001CCBE3 /* SceneDelegate.m in Sources */,
 				DFDFB48E273A4F03001CCBE3 /* HWCPipeInfo.cpp in Sources */,
 			);

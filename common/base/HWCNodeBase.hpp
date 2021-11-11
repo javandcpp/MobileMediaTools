@@ -28,10 +28,11 @@
 
 #include <stdio.h>
 #include "HWCAVStruct.hpp"
+#include "HWCEventBase.hpp"
 
 #define LOG(x)   LOGD("create:"#x);
 
-class HWCNodeBase{
+class HWCNodeBase:public HWCEventBase{
 public:
     virtual void inputData(AVFrameData* data){};
     virtual void outputData(AVFrameData* data){};

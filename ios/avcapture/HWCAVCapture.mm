@@ -33,6 +33,7 @@ using namespace std;
             pipeInfo=HWCPipeParser::parser([contents UTF8String]);
             pipe=std::make_shared<HWCPipe>();
             pipe->createPipe(pipeInfo.get());
+            pipe->registerEventBus(pipeInfo.get());
 //            auto end = std::chrono::steady_clock::now();
 //            std::chrono::duration<double, std::milli> elapsed = end - start; // std::micro 表示以微秒为时间单位
 //            std::cout<< "time: "  << elapsed.count() << "ms" << std::endl;
@@ -45,6 +46,7 @@ using namespace std;
 
 -(void)dealloc{
     if(pipe){
+        pipe->unRegisterEventBus();
         pipe.reset();
     }
     if(pipeInfo){
@@ -54,7 +56,12 @@ using namespace std;
 }
 
 static void task(void* obj){
+    
+    
     HWCAVCapture* capture=(__bridge HWCAVCapture*)obj;
+    
+   
+    
     for (int i=0; i<50; i++) {
         LOGD("send data");
         AVFrameData* dataAudio=new AVFrameData();
@@ -77,9 +84,13 @@ static void task(void* obj){
 
 -(void)startCapture:(MediaType)type{
     
+    HWCEvent event;
+    event.eventType=EVENT_START;
+    pipe->postSyncEvent(event);
+    
     void* obj=(__bridge void*)self;
-    std::thread t1(task,obj);
-    t1.detach();
+//    std::thread t1(task,obj);
+//    t1.detach();
 }
 
 @end
