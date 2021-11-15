@@ -29,6 +29,8 @@
 #include <stdio.h>
 #include "HWCAVStruct.hpp"
 #include "HWCEventBase.hpp"
+#include <mutex>
+#include <algorithm>
 
 #define LOG(x)   LOGD("create:"#x);
 

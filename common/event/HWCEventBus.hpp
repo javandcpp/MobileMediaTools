@@ -14,6 +14,7 @@
 #include "HWCNodeBase.hpp"
 #include "HWCEvent.hpp"
 #include <vector>
+#include <mutex>
 using namespace std;
 
 
@@ -23,7 +24,7 @@ class HWCEventBus{
 public:
     friend class SingleInstance<HWCEventBus>;
     
-    void registerEvent(shared_ptr<HWCNodeBase> ptr);
+    void registerEvent(shared_ptr<HWCNodeBase>& ptr);
     void unregisterEvent();
     void postAsyncEvent(HWCEvent event);
     void postSyncEvent(HWCEvent& event);
@@ -47,6 +48,7 @@ private:
 
     std::vector<std::weak_ptr<HWCNodeBase>> nodes;
     std::mutex m_Mutex;
+	
     
     
 };

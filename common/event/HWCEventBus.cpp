@@ -9,7 +9,7 @@
 #include "Log.h"
 #include <thread>
 
-void HWCEventBus::registerEvent(shared_ptr<HWCNodeBase> ptr){
+void HWCEventBus::registerEvent(shared_ptr<HWCNodeBase>& ptr){
     std::lock_guard<std::mutex> lock(m_Mutex);
     nodes.push_back(ptr);
     

@@ -61,10 +61,10 @@ std::shared_ptr<HWCNodeBase> HWCPipeNodeRegister::findNode(std::string& name){
         auto nodes_begin=getStreamNodes().begin();
         auto nodes_end=getStreamNodes().end();
         while (nodes_begin!=nodes_end) {
-            if(nodes_begin.base()){
-                HWCNodeBase* node=nodes_begin.base()->get();
+            if(nodes_begin->get()){
+                HWCNodeBase* node=nodes_begin->get();
                 if(node->getNodeName()==name){
-                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin.base());
+                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin);
                 }
             }
             ++nodes_begin;
@@ -74,10 +74,10 @@ std::shared_ptr<HWCNodeBase> HWCPipeNodeRegister::findNode(std::string& name){
         auto nodes_begin=getEncoderNodes().begin();
         auto nodes_end=getEncoderNodes().end();
         while (nodes_begin!=nodes_end) {
-            if(nodes_begin.base()){
-                HWCNodeBase* node=nodes_begin.base()->get();
+            if(nodes_begin->get()){
+                HWCNodeBase* node=nodes_begin->get();
                 if(node->getNodeName()==name){
-                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin.base());
+                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin);
                 }
             }
             ++nodes_begin;
@@ -87,10 +87,10 @@ std::shared_ptr<HWCNodeBase> HWCPipeNodeRegister::findNode(std::string& name){
         auto nodes_begin=getMuxerNodes().begin();
         auto nodes_end=getMuxerNodes().end();
         while (nodes_begin!=nodes_end) {
-            if(nodes_begin.base()){
-                HWCNodeBase* node=nodes_begin.base()->get();
+            if(nodes_begin->get()){
+                HWCNodeBase* node=nodes_begin->get();
                 if(node->getNodeName()==name){
-                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin.base());
+                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin);
                 }
             }
             ++nodes_begin;

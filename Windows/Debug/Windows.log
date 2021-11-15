@@ -1,0 +1,32 @@
+﻿  Reading Qt configuration (D:/Qt5.9.8/5.9.8/msvc2015/bin/qmake)
+  uic Windows.ui
+  rcc Windows.qrc
+  moc Windows.h
+   RCC: Warning: No resources in 'C:\Users\EDZ\Downloads\MobileMediaTools\Windows\Windows.qrc'.
+  HWCEventBus.cpp
+  HWCH264EncoderNode.cpp
+  HWCMP3EncoderNode.cpp
+  HWCMp4MuxerNode.cpp
+  HWCAudioDenoiseNode.cpp
+  HWCVideoStreamProcessNode.cpp
+  HWCPipe.cpp
+  HWCPipeInfo.cpp
+  HWCPipeNodeRegister.cpp
+  HWCPipeParser.cpp
+  Windows.cpp
+  main.cpp
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\node\process\HWCAudioDenoiseNode.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\node\muxer\HWCMp4MuxerNode.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\node\encoder\HWCMP3EncoderNode.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\node\encoder\HWCH264EncoderNode.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\node\process\HWCVideoStreamProcessNode.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\event\HWCEventBus.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\pipe\HWCPipeNodeRegister.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\pipe\HWCPipeParser.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\pipe\HWCPipeInfo.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 ..\common\pipe\HWCPipe.cpp)
+C:\Users\EDZ\Downloads\MobileMediaTools\common\base\HWCNodeBase.hpp : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失 (编译源文件 main.cpp)
+  qrc_Windows.cpp
+  moc_Windows.cpp
+  Windows.vcxproj -> C:\Users\EDZ\Downloads\MobileMediaTools\Windows\Debug\Windows.exe
+  Windows.vcxproj -> C:\Users\EDZ\Downloads\MobileMediaTools\Windows\Debug\Windows.pdb (Full PDB)
