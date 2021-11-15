@@ -33,8 +33,8 @@ void HWCPipe::registerEventBus(HWCPipeInfo *pipeInfo){
     auto start=nodes.begin();
     while (start!=nodes.end()) {
         
-        auto nodePtr=start.base();
-        SingleInstance<HWCEventBus>::getInstance().registerEvent(*nodePtr);
+		auto &nodePtr = *start;
+        SingleInstance<HWCEventBus>::getInstance().registerEvent(nodePtr);
         ++start;
     }
 }
@@ -64,9 +64,7 @@ void HWCPipe::createPipe(HWCPipeInfo *pipeInfo){
         
         auto start=nodes.begin();
         while (start!=nodes.end()) {
-            
-            auto nodePtr=start.base();
-            HWCNodeBase* node=nodePtr->get();
+            HWCNodeBase* node= start->get();
             if(node->sink.lock()&&node->getStreamType()==VIDEO_STREAM_TYPE){
                 videoSinkHead=node->sink.lock();
             }else if(node->sink_2.lock()&&node->getStreamType()==VIDEO_STREAM_TYPE){

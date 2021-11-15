@@ -1,0 +1,20 @@
+{"pipe":[
+    {
+        "streams":[
+        {"name":"audiodenoisestream","type":0,"source":"mp3encoder"},
+        {"name":"videoprocessstream","type":1,"source":"h264encoder"}
+        ]
+    },
+    {
+        "encoders":[
+        {"name":"mp3encoder","type":0,"source":"mp4muxer"},
+        {"name":"h264encoder","type":1,"source":"mp4muxer"}
+        ]
+        
+    },
+    {
+        "muxers":[
+        {"name":"mp4muxer","type":2}
+        ]
+    }
+]}
