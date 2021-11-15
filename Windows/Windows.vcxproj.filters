@@ -130,4 +130,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="mediaconfig.json">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

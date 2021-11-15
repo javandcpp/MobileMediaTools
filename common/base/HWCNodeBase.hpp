@@ -32,7 +32,6 @@
 #include <mutex>
 #include <algorithm>
 
-#define LOG(x)   LOGD("create:"#x);
 
 class HWCNodeBase:public HWCEventBase{
 public:

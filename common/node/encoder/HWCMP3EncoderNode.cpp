@@ -11,7 +11,7 @@
 
 
 HWCMP3EncoderNode::HWCMP3EncoderNode():HWCNodeBase("mp3encoder",AUDIO_STREAM_TYPE){
-    LOG(HWCMP3EncoderNode);
+
 }
 
 HWCMP3EncoderNode::~HWCMP3EncoderNode(){

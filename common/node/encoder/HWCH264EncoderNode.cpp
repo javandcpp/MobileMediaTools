@@ -11,7 +11,7 @@
 
 
 HWCH264EncoderNode::HWCH264EncoderNode():HWCNodeBase("h264encoder",VIDEO_STREAM_TYPE){
-    LOG(HWCH264EncoderNode);
+	//  LOGD(HWCH264EncoderNode);
 }
 
 HWCH264EncoderNode::~HWCH264EncoderNode(){

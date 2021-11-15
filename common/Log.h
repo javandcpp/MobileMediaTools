@@ -8,11 +8,29 @@
 #define __FILENAME__ (strrchr(__FILE__, '/') + 1)
 
 
-#ifdef DEBUG
-#define LOGD(format, ...) printf("[%s][%s][%d]: " format "\n", __FILENAME__, __FUNCTION__,\
-                            __LINE__, ##__VA_ARGS__)
-#else
-#define LOGD(format, ...)
-#endif
+	#ifndef DEBUG
 
-#endif //JSON_LOG_H_
+		#ifdef __APPLE__
+		#define LOGD(format, ...) printf("[%s][%s][%d]: " format "\n", __FILENAME__, __FUNCTION__,\
+									__LINE__, ##__VA_ARGS__)
+		#endif 
+
+		#ifdef WIN32
+
+		#define LOGD(format, ...) fprintf(stderr, "[%s|%s@%s,%d] " format "\n", "DEBUG", __func__, __FILE__, __LINE__, ##__VA_ARGS__);
+		
+		#endif
+
+		#ifdef __ANDROID__
+
+		#else
+
+		#endif
+
+
+	#else 
+		#define LOGD(format, ...)
+	#endif
+
+
+#endif

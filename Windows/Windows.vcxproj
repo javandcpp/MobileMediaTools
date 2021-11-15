@@ -132,6 +132,9 @@
     <ClInclude Include="..\common\pipe\HWCPipeNodeRegister.hpp" />
     <ClInclude Include="..\common\pipe\HWCPipeParser.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="mediaconfig.json" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
