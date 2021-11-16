@@ -1,0 +1,4 @@
+rootProject.name = "TestMediaTools"
+include ':app'
+
+include ':mediatools'
