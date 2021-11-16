@@ -73,9 +73,8 @@ std::shared_ptr<HWCNodeBase> HWCPipeNodeRegister::findNode(std::string& name){
         auto nodes_begin=getEncoderNodes().begin();
         auto nodes_end=getEncoderNodes().end();
         while (nodes_begin!=nodes_end) {
-            if(nodes_begin->get()){
-                HWCNodeBase* node=nodes_begin->get();
-                if(node->getNodeName()==name){
+            if(*nodes_begin){
+                if((*nodes_begin)->getNodeName()==name){
                     return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin);
                 }
             }
@@ -86,12 +85,11 @@ std::shared_ptr<HWCNodeBase> HWCPipeNodeRegister::findNode(std::string& name){
         auto nodes_begin=getMuxerNodes().begin();
         auto nodes_end=getMuxerNodes().end();
         while (nodes_begin!=nodes_end) {
-            if(nodes_begin->get()){
-                HWCNodeBase* node=nodes_begin->get();
-                if(node->getNodeName()==name){
-                    return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin);
-                }
-            }
+			if (*nodes_begin) {
+				if ((*nodes_begin)->getNodeName() == name) {
+					return static_cast<std::shared_ptr<HWCNodeBase>>(*nodes_begin);
+				}
+			}
             ++nodes_begin;
         }
     }
