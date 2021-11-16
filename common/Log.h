@@ -5,6 +5,8 @@
 #ifndef JSON_LOG_H_
 #define JSON_LOG_H_
 
+
+
 #define __FILENAME__ (strrchr(__FILE__, '/') + 1)
 
 

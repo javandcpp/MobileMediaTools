@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <QtLastBackgroundBuild>2021-11-15T04:01:20.8992830Z</QtLastBackgroundBuild>
+    <QtLastBackgroundBuild>2021-11-16T08:45:38.9803584Z</QtLastBackgroundBuild>
   </PropertyGroup>
   <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <QtLastBackgroundBuild>2021-11-15T04:01:24.5384673Z</QtLastBackgroundBuild>
+    <QtLastBackgroundBuild>2021-11-16T08:45:39.6583805Z</QtLastBackgroundBuild>
   </PropertyGroup>
 </Project>
