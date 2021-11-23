@@ -7,6 +7,8 @@
 
 #import <Foundation/Foundation.h>
 #import "Define.hpp"
+#import "HWCAudioCapture.h"
+#import "HWCVideoCapture.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -14,7 +16,7 @@ typedef enum{
     MEDIA_VIDEO=0,MEDIA_AUDIO
 }MediaType;
 
-@interface HWCAVCapture : NSObject
+@interface HWCAVCapture : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate>
 
 -(void)startCapture:(MediaType)type;
 

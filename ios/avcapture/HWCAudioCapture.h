@@ -6,10 +6,16 @@
 //
 
 #import "HWCAVCaptureBase.h"
-
+#import <AVFoundation/AVFoundation.h>
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HWCAduioCapture : HWCAVCaptureBase
+@interface HWCAudioCapture : HWCAVCaptureBase
+
+
+//AVCaptureDeviceInput* audioInput;
+//AVCaptureAudioDataOutput* audioOutput;
+-(AVCaptureDeviceInput*)getCaputureAudioDeviceInput;
+-(AVCaptureAudioDataOutput*)getCaptureAduioDataOutput;
 
 @end
 
