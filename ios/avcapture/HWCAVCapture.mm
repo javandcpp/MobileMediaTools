@@ -12,9 +12,9 @@
 #include "Log.h"
 #include <thread>
 #include <chrono>
-#import <AVFoundation/AVFoundation.h>
 #import "HWCVideoCapture.h"
 #import "HWCAudioCapture.h"
+#import "HWCIOSAudioQueue.h"
 
 
 
@@ -22,6 +22,7 @@
 
 using namespace std;
 @implementation HWCAVCapture{
+    NSLock* _lock;
     std::shared_ptr<HWCPipeInfo> pipeInfo;
     std::shared_ptr<HWCPipe> pipe;
     AVCaptureSession* captureSession;
@@ -30,6 +31,8 @@ using namespace std;
     HWCAudioCapture* audioCapture;
     AVCaptureConnection *videoConnection;
     AVCaptureConnection *audioConnection;
+    HWCIOSAudioQueue*    audioQueue;
+    MediaType mediaType;
 }
 -(void)setupSession{
     captureSession = [[AVCaptureSession alloc] init];
@@ -71,8 +74,9 @@ using namespace std;
     if ([videoConnection isVideoStabilizationSupported]) {
         videoConnection.preferredVideoStabilizationMode = AVCaptureVideoStabilizationModeAuto;
     }
-    
-    
+}
+-(void)initAudioQueue{
+    audioQueue=[[HWCIOSAudioQueue alloc] init];
 }
 -(void)initAudioCapture{
     audioCapture=[[HWCAudioCapture alloc] init];
@@ -97,13 +101,32 @@ using namespace std;
     // 6.设置音频输出连接
     audioConnection = [audioOutput connectionWithMediaType:AVMediaTypeAudio];
     
-    
+}
+
+- (AVCaptureVideoPreviewLayer*)setupPreviewLayer:(CGRect)frame {
+    self.previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:captureSession];
+    self.previewLayer.frame = frame;
+    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    return self.previewLayer;
 }
 
 -(instancetype)init{
     self =[super init];
     if(self){
         auto start = std::chrono::steady_clock::now();
+        _lock=[[NSLock alloc] init];
+        
+        self->captureSession=nil;
+        self->captureSessionQueue=nil;
+        
+        [self setupSession];
+        [self initVideoCapture];
+//        [self initAudioCapture];
+        
+        [self initAudioQueue];
+        
+        
+        
         HWCPipeNodeRegister::getInstance().avRegisterAllNode();
         NSString *path=[[NSBundle mainBundle] pathForResource:@"mediaconfig" ofType:@"json"];
         NSError *error;
@@ -118,27 +141,6 @@ using namespace std;
             //            std::chrono::duration<double, std::milli> elapsed = end - start; // std::micro 表示以微秒为时间单位
             //            std::cout<< "time: "  << elapsed.count() << "ms" << std::endl;
             
-            
-            //            session = [[AVCaptureSession alloc] init];
-            
-            // 设置分辨率
-            //           [session canSetSessionPreset:[self supportSessionPreset]];
-            //
-            //            /**
-            //             注意: 配置AVCaptureSession 的时候, 必须先开始配置, beginConfiguration, 配置完成, 必须提交配置 commitConfiguration, 否则配置无效
-            //             **/
-            //
-            //            //开始配置
-            //            [self.session beginConfiguration];
-            //
-            //            // 设置视频 I/O 对象 并添加到session
-            //            [self videoInputAndOutput];
-            //
-            //            // 设置音频 I/O 对象 并添加到session
-            //            [self audioInputAndOutput];
-            //
-            //            // 提交配置
-            //            [self.session commitConfiguration];
             
         }
     }
@@ -156,46 +158,108 @@ using namespace std;
     
 }
 
-static void task(void* obj){
-    
-    
-    HWCAVCapture* capture=(__bridge HWCAVCapture*)obj;
-    
-    
-    
-    for (int i=0; i<50; i++) {
-        LOGD("send data");
-        AVFrameData* dataAudio=new AVFrameData();
-        dataAudio->stream_type=AUDIO_STREAM_TYPE;
+-(void)startCapture:(MediaType)type{
+    if(self->captureSession&&self->captureSessionQueue){
         
-        AVFrameData* dataVideo=new AVFrameData();
-        dataVideo->stream_type=VIDEO_STREAM_TYPE;
-        
-        dataAudio->pts=i;
-        capture->pipe->pipeTransportData(dataAudio);
-        dataVideo->pts=i;
-        capture->pipe->pipeTransportData(dataVideo);
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-        
-        
-        delete dataAudio;
-        delete dataVideo;
+        [self->audioQueue start];
+        mediaType=type;
+        dispatch_async(captureSessionQueue, ^{
+            [self->_lock lock];
+            if (![self->captureSession isRunning]) {
+                [self->captureSession startRunning];
+            }
+            [self->_lock unlock];
+        });
     }
 }
 
--(void)startCapture:(MediaType)type{
+-(void)stopCapture{
+    if(self->captureSession&&self->captureSessionQueue){
+        dispatch_async(captureSessionQueue, ^{
+            [self->_lock lock];
+            if ([self->captureSession isRunning]) {
+                [self->captureSession stopRunning];
+            }
+            [self->_lock unlock];
+        });
+    }
     
-    HWCEvent event;
-    event.eventType=EVENT_START;
-    pipe->postSyncEvent(event);
-    
-    void* obj=(__bridge void*)self;
-    //    std::thread t1(task,obj);
-    //    t1.detach();
 }
+
+- (uint8_t *)convertAudioSmapleBufferToPcmData:(CMSampleBufferRef) audioSampleBuffer{
+    size_t size=CMSampleBufferGetTotalSampleSize(audioSampleBuffer);
+    uint8_t* audio_data=(uint8_t*)malloc(size);
+    memset(audio_data, 0, size);
+    CMBlockBufferRef blockBuffer=CMSampleBufferGetDataBuffer(audioSampleBuffer);
+    CMBlockBufferCopyDataBytes(blockBuffer, 0, size, audio_data);
+    return audio_data;
+}
+
+- (uint8_t *)convertVideoSmapleBufferToYuvData:(CMSampleBufferRef) videoSample{
+    CVImageBufferRef pixelBuffer = CMSampleBufferGetImageBuffer(videoSample);
+    CVPixelBufferLockBaseAddress(pixelBuffer, 0);
+    size_t pixelWidth = CVPixelBufferGetWidth(pixelBuffer);
+    size_t pixelHeight = CVPixelBufferGetHeight(pixelBuffer);
+    size_t y_size = pixelWidth * pixelHeight;
+    size_t uv_size = y_size / 2;
+    
+    uint8_t *yuv_frame = (uint8_t*)malloc(uv_size + y_size);
+    memset(yuv_frame, 0, uv_size+y_size);
+    //获取CVImageBufferRef中的y数据
+    uint8_t *y_frame = (uint8_t*)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 0);
+    memcpy(yuv_frame, y_frame, y_size);
+    //获取CMVImageBufferRef中的uv数据
+    uint8_t *uv_frame = (uint8_t*)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 1);
+    
+    memcpy(yuv_frame + y_size, uv_frame, uv_size);
+    CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
+    
+    return yuv_frame;
+    
+    //返回数据
+    
+    //    return [NSData dataWithBytesNoCopy:yuv_frame length:y_size + uv_size];
+    
+}
+
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
     
+    // 判断音频还是视频
+    // 视频
+    if ([connection isEqual:videoConnection]) {
+        NSLog(@"video sampleBuffer%@", sampleBuffer);
+        uint8_t* yuv=[self convertVideoSmapleBufferToYuvData:sampleBuffer];
+//        free(yuv);
+        std::shared_ptr<AVFrameData> dataSharedPtr=std::make_shared<AVFrameData>();
+        dataSharedPtr->data=yuv;
+        dataSharedPtr->stream_type=VIDEO_STREAM_TYPE;
+    }
     
+    // 音频
+    if ([connection isEqual:audioConnection]) {
+        NSLog(@"audio sampleBuffer%@", sampleBuffer);
+        uint8_t* pcm=[self convertAudioSmapleBufferToPcmData:sampleBuffer];
+        std::shared_ptr<AVFrameData> dataSharedPtr=std::make_shared<AVFrameData>();
+        dataSharedPtr->data=pcm;
+        dataSharedPtr->stream_type=AUDIO_STREAM_TYPE;
+//        free(pcm);
+    }
+    
+    //        // 视频
+    //        if ([output isEqual:self.videoDataOutput]) {
+    //
+    //        }
+    //
+    //        // 音频
+    //        if ([output isEqual:self.audioDataOutput]) {
+    //
+    //        }
+}
+
+
+- (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error
+{
+    NSLog(@"---- 录制结束 ----");
 }
 @end

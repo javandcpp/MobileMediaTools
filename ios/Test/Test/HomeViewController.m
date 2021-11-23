@@ -40,6 +40,8 @@
     [super viewDidLoad];
 
     capture=[[HWCAVCapture alloc] init];
+    AVCaptureVideoPreviewLayer* layer=[capture setupPreviewLayer:self.view.bounds];
+    [self.view.layer addSublayer:layer];
     [capture startCapture:2];
 
     
@@ -81,6 +83,9 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+- (void)viewDidDisappear:(BOOL)animated{
+    [capture stopCapture];
+}
 /*
 #pragma mark - Navigation
 

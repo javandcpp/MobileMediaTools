@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF1BFE4F274CDB4B00C9B19D /* HWCIOSAudioQueue.mm in Sources */ = {isa = PBXBuildFile; fileRef = DF1BFE4E274CDB4B00C9B19D /* HWCIOSAudioQueue.mm */; };
 		DF717F81273BA8E500635B5D /* HWCH264EncoderNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF717F7F273BA8E500635B5D /* HWCH264EncoderNode.cpp */; };
 		DF717F84273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DF717F82273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp */; };
 		DF717F9F273BC06700635B5D /* MyNaviViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DF717F9B273BC06600635B5D /* MyNaviViewController.m */; };
@@ -58,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF1BFE4D274CDB4B00C9B19D /* HWCIOSAudioQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HWCIOSAudioQueue.h; path = ../../avcapture/HWCIOSAudioQueue.h; sourceTree = "<group>"; };
+		DF1BFE4E274CDB4B00C9B19D /* HWCIOSAudioQueue.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = HWCIOSAudioQueue.mm; path = ../../avcapture/HWCIOSAudioQueue.mm; sourceTree = "<group>"; };
 		DF717F7F273BA8E500635B5D /* HWCH264EncoderNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCH264EncoderNode.cpp; path = ../../../common/node/encoder/HWCH264EncoderNode.cpp; sourceTree = "<group>"; };
 		DF717F80273BA8E500635B5D /* HWCH264EncoderNode.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; name = HWCH264EncoderNode.hpp; path = ../../../common/node/encoder/HWCH264EncoderNode.hpp; sourceTree = "<group>"; };
 		DF717F82273BAEC800635B5D /* HWCVideoStreamProcessNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = HWCVideoStreamProcessNode.cpp; path = ../../../common/node/process/HWCVideoStreamProcessNode.cpp; sourceTree = "<group>"; };
@@ -225,6 +228,8 @@
 				DFDECE4E273CEBEA0024E96E /* HWCEventBus.hpp */,
 				DFDECE51273CEC130024E96E /* HWCTemplate.hpp */,
 				DFDECE54273CF1AC0024E96E /* HWCEvent.hpp */,
+				DF1BFE4D274CDB4B00C9B19D /* HWCIOSAudioQueue.h */,
+				DF1BFE4E274CDB4B00C9B19D /* HWCIOSAudioQueue.mm */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -404,6 +409,7 @@
 				DFDFB49A273A5412001CCBE3 /* HWCMP3EncoderNode.cpp in Sources */,
 				DFDFB477273A2A57001CCBE3 /* HWCAudioCapture.mm in Sources */,
 				DFDFB43E273A2149001CCBE3 /* Test.xcdatamodeld in Sources */,
+				DF1BFE4F274CDB4B00C9B19D /* HWCIOSAudioQueue.mm in Sources */,
 				DFDFB432273A2149001CCBE3 /* AppDelegate.m in Sources */,
 				DFDECE4F273CEBEA0024E96E /* HWCEventBus.cpp in Sources */,
 				DFDFB435273A2149001CCBE3 /* SceneDelegate.m in Sources */,
@@ -514,7 +520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -567,7 +573,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

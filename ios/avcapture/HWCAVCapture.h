@@ -9,6 +9,7 @@
 #import "Define.hpp"
 #import "HWCAudioCapture.h"
 #import "HWCVideoCapture.h"
+#import <AVFoundation/AVFoundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,9 +19,14 @@ typedef enum{
 
 @interface HWCAVCapture : NSObject <AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate>
 
+@property(nonatomic,strong)AVCaptureVideoPreviewLayer* previewLayer;
+
 -(void)startCapture:(MediaType)type;
 
 -(void)stopCapture;
+
+- (AVCaptureVideoPreviewLayer*)setupPreviewLayer:(CGRect)frame;
+
 @end
 
 NS_ASSUME_NONNULL_END
