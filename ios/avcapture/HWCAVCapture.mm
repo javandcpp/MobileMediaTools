@@ -33,12 +33,17 @@ using namespace std;
     AVCaptureConnection *audioConnection;
     HWCIOSAudioQueue*    audioQueue;
     MediaType mediaType;
+    uint64_t videoPts;
+    NSString *yuvPath;
+    FILE    *fp;
 }
 -(void)setupSession{
     captureSession = [[AVCaptureSession alloc] init];
     // 2.设置分辨率 分辨率与编码时候的宽和高有关系
-    if ([captureSession canSetSessionPreset:AVCaptureSessionPresetHigh]) {
-        captureSession.sessionPreset = AVCaptureSessionPresetHigh;
+    if ([captureSession canSetSessionPreset:AVCaptureSessionPreset1280x720]) {
+        captureSession.sessionPreset=AVCaptureSessionPreset1280x720;
+    }else{
+        captureSession.sessionPreset=AVCaptureSessionPresetMedium;
     }
     // 3. 创建Session队列
     captureSessionQueue = dispatch_queue_create("captureSession queue", DISPATCH_QUEUE_SERIAL);
@@ -98,6 +103,7 @@ using namespace std;
         
     }
     
+    
     // 6.设置音频输出连接
     audioConnection = [audioOutput connectionWithMediaType:AVMediaTypeAudio];
     
@@ -121,7 +127,9 @@ using namespace std;
         
         [self setupSession];
         [self initVideoCapture];
-//        [self initAudioCapture];
+        
+        //AudioCapture & AudioQueue
+        //        [self initAudioCapture];
         
         [self initAudioQueue];
         
@@ -143,6 +151,20 @@ using namespace std;
             
             
         }
+        
+        
+        NSString *documentPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        NSLog(@"document文件夹路径为%@",documentPath);
+        
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *testPath = [documentPath stringByAppendingPathComponent:@"test"];
+        BOOL isSuccess = [fileManager createDirectoryAtPath:testPath withIntermediateDirectories:YES attributes:nil error:nil];
+        NSLog(@"成功创建文件夹了吗：%@",isSuccess?@"yes":@"no");
+        
+        yuvPath = [testPath stringByAppendingPathComponent:@"test.yuv"];
+        BOOL isPcmSuccess = [fileManager createFileAtPath:yuvPath contents:nil attributes:nil];
+        NSLog(@"成功创建文件了吗：%@",isPcmSuccess?@"yes":@"no");
+//        fp=fopen([yuvPath UTF8String], "wb+");
     }
     return self;
 }
@@ -184,6 +206,8 @@ using namespace std;
         });
     }
     
+    [audioQueue stop];
+    
 }
 
 - (uint8_t *)convertAudioSmapleBufferToPcmData:(CMSampleBufferRef) audioSampleBuffer{
@@ -193,6 +217,59 @@ using namespace std;
     CMBlockBufferRef blockBuffer=CMSampleBufferGetDataBuffer(audioSampleBuffer);
     CMBlockBufferCopyDataBytes(blockBuffer, 0, size, audio_data);
     return audio_data;
+}
+
+-(uint8_t*)convertVideoSampleBufferNV12ToYUVI420Data:(CMSampleBufferRef)sampleBuffer{
+    CVImageBufferRef imageBuffer =CMSampleBufferGetImageBuffer(sampleBuffer);
+    CVPixelBufferLockBaseAddress(imageBuffer,0);
+    CMTime pts =CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+    CMTime duration =CMSampleBufferGetDuration(sampleBuffer);
+    void *imageAddress = CVPixelBufferGetBaseAddressOfPlane(imageBuffer,0);//YYYYYYYY
+    size_t row0=CVPixelBufferGetBytesPerRowOfPlane(imageBuffer,0);
+    
+    void *imageAddress1=CVPixelBufferGetBaseAddressOfPlane(imageBuffer,1);//UVUVUVUV
+    
+    size_t row1=CVPixelBufferGetBytesPerRowOfPlane(imageBuffer,1);
+    size_t width =CVPixelBufferGetWidth(imageBuffer);
+    size_t height =CVPixelBufferGetHeight(imageBuffer);
+    
+    
+    
+    CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+    
+    size_t a=width*height;
+    
+    //开始将NV12转换成YUV420
+    
+    uint8_t *yuv420Data=(uint8_t*)malloc(a*1.5);
+    
+    for (int i=0; i<height; ++i) {
+        
+        memcpy(yuv420Data+i*width, ((uint8_t*)imageAddress)+i*row0, width);
+        
+    }
+    
+    uint8_t *UV=(uint8_t*)imageAddress1;
+    
+    uint8_t *U=yuv420Data+a;
+    
+    uint8_t *V=U+a/4;
+    
+    for (int i=0; i<0.5*height; i++) {
+        
+        for (int j=0; j<0.5*width; j++) {
+            
+            *(U++)=UV[j<<1];
+            
+            *(V++)=UV[(j<<1)+1];
+            
+        }
+        
+        UV+=row1;
+        
+    }
+  //  fwrite(yuv420Data, 1, a*1.5, fp);
+    return yuv420Data;
 }
 
 - (uint8_t *)convertVideoSmapleBufferToYuvData:(CMSampleBufferRef) videoSample{
@@ -212,6 +289,7 @@ using namespace std;
     uint8_t *uv_frame = (uint8_t*)CVPixelBufferGetBaseAddressOfPlane(pixelBuffer, 1);
     
     memcpy(yuv_frame + y_size, uv_frame, uv_size);
+    
     CVPixelBufferUnlockBaseAddress(pixelBuffer, 0);
     
     return yuv_frame;
@@ -228,9 +306,13 @@ using namespace std;
     // 判断音频还是视频
     // 视频
     if ([connection isEqual:videoConnection]) {
-        NSLog(@"video sampleBuffer%@", sampleBuffer);
-        uint8_t* yuv=[self convertVideoSmapleBufferToYuvData:sampleBuffer];
-//        free(yuv);
+        
+        uint64_t pts = videoPts++ *(1000/30);
+        NSLog(@"video pts:%llu", pts);
+        uint8_t* yuv=[self convertVideoSampleBufferNV12ToYUVI420Data:sampleBuffer];
+        //        free(yuv);
+
+        
         std::shared_ptr<AVFrameData> dataSharedPtr=std::make_shared<AVFrameData>();
         dataSharedPtr->data=yuv;
         dataSharedPtr->stream_type=VIDEO_STREAM_TYPE;
@@ -243,7 +325,7 @@ using namespace std;
         std::shared_ptr<AVFrameData> dataSharedPtr=std::make_shared<AVFrameData>();
         dataSharedPtr->data=pcm;
         dataSharedPtr->stream_type=AUDIO_STREAM_TYPE;
-//        free(pcm);
+        //        free(pcm);
     }
     
     //        // 视频
@@ -261,5 +343,8 @@ using namespace std;
 - (void)captureOutput:(AVCaptureFileOutput *)captureOutput didFinishRecordingToOutputFileAtURL:(NSURL *)outputFileURL fromConnections:(NSArray *)connections error:(NSError *)error
 {
     NSLog(@"---- 录制结束 ----");
+//    if(fp){
+//        fclose(fp);
+//    }
 }
 @end

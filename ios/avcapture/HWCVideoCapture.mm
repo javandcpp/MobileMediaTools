@@ -12,7 +12,8 @@
     AVCaptureDevice* videoDevice;
     AVCaptureDeviceInput* videoInput;
     AVCaptureVideoDataOutput* videoOutput;
-    
+    NSString *yuvPath;
+
     
 }
 
@@ -54,7 +55,31 @@
             videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
         }
         
+        //设置帧率
         NSError *error;
+        
+        CMTime frameDuration = CMTimeMake(1, 30);
+
+           BOOL frameRateSupported = NO;
+           
+           for (AVFrameRateRange *range in [videoDevice.activeFormat videoSupportedFrameRateRanges]) {
+               if (CMTIME_COMPARE_INLINE(frameDuration, >=, range.minFrameDuration) &&
+                   CMTIME_COMPARE_INLINE(frameDuration, <=, range.maxFrameDuration)) {
+                   CMTimeShow(range.maxFrameDuration);
+                   CMTimeShow(range.minFrameDuration);
+                   
+                   frameRateSupported = YES;
+               }
+           }
+           
+           if (frameRateSupported && [videoDevice lockForConfiguration:&error]) {
+               [videoDevice setActiveVideoMaxFrameDuration:frameDuration];
+               [videoDevice setActiveVideoMinFrameDuration:frameDuration];
+               [videoDevice unlockForConfiguration];
+           }
+
+        
+        
         videoInput = [[AVCaptureDeviceInput alloc] initWithDevice:videoDevice error:&error];
         if (error) {
             NSLog(@"摄像头错误");
@@ -78,9 +103,9 @@
         [videoOutput setAlwaysDiscardsLateVideoFrames:YES];
         
         // 6. 设置视频输出代理和队列
-//        dispatch_queue_t videoQueue = dispatch_queue_create("video output queue", DISPATCH_QUEUE_SERIAL);
+        //        dispatch_queue_t videoQueue = dispatch_queue_create("video output queue", DISPATCH_QUEUE_SERIAL);
         
-//        [videoOutput setSampleBufferDelegate:self queue:videoQueue];
+        //        [videoOutput setSampleBufferDelegate:self queue:videoQueue];
         
         //        // 将输入对象添加到管理者 AVCaptureSession 中
         //        // 需要先判断是否能够添加输入对象
@@ -96,22 +121,22 @@
         
         //        if ([self supportsFastTextureUpload]) {
         // 是否支持全频色彩编码 YUV 一种色彩编码方式, 即YCbCr, 现在视频一般采用该颜色空间, 可以分离亮度跟色彩, 在不影响清晰度的情况下来压缩视频
-//        BOOL supportFullYUVRange = NO;
-//
-//        // 获取输出对象所支持的像素格式
-//        NSArray *supportedPixelFormats = videoOutput.availableVideoCVPixelFormatTypes;
-//        for (NSNumber *currentPixelFormat in supportedPixelFormats) {
-//            if ([currentPixelFormat integerValue] == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
-//                supportFullYUVRange = YES;
-//            }
-//        }
-//
-//        // 根据是否支持全频色彩编码 YUV 来设置输出对象的视频像素压缩格式
-//        if (supportFullYUVRange) {
-//            [videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
-//        } else {
-//            [videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
-//        }
+        //        BOOL supportFullYUVRange = NO;
+        //
+        //        // 获取输出对象所支持的像素格式
+        //        NSArray *supportedPixelFormats = videoOutput.availableVideoCVPixelFormatTypes;
+        //        for (NSNumber *currentPixelFormat in supportedPixelFormats) {
+        //            if ([currentPixelFormat integerValue] == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange) {
+        //                supportFullYUVRange = YES;
+        //            }
+        //        }
+        //
+        //        // 根据是否支持全频色彩编码 YUV 来设置输出对象的视频像素压缩格式
+        //        if (supportFullYUVRange) {
+        //            [videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarFullRange] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
+        //        } else {
+        //            [videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
+        //        }
         //        }
         //        else {//BGRA
         //            [videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
@@ -121,6 +146,8 @@
         //        dispatch_queue_t videoQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0);
         //        // 设置代理
         //        [videoOutput setSampleBufferDelegate:self queue:videoQueue];
+        
+      
         
     }
     return self;
